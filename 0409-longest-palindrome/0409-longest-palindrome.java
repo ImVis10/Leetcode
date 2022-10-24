@@ -5,13 +5,13 @@ class Solution {
         if (s.length() == 1) {
             return 1;
         }
-        
+        char[] chars = s.toCharArray();
         Set<Character> set = new HashSet<>();
-        for (int i = 0; i < s.length(); i++) {
-            if (set.contains(s.charAt(i))) {
-                set.remove(s.charAt(i)); // if the char is already present in set, remove it. So that we know there is a pair.
+        for (char c : chars) {
+            if (set.contains(c)) {
+                set.remove(c); // if the char is already present in set, remove it. So that we know there is a pair.
             } else {
-                set.add(s.charAt(i)); // if a char is not present in the set, add it to the set.
+                set.add(c); // if a char is not present in the set, add it to the set.
             }
         }
         int pickOneFromSetIfItHasAny = set.isEmpty() ? 0 : 1; // If set has multiple chars, take one char from it. 
