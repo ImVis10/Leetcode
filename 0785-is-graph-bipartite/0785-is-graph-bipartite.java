@@ -21,6 +21,7 @@ class Solution {
         Queue<Integer> q = new LinkedList<>();
         q.add(v);
         flag[v] = 1;
+        System.out.println(flag[0]);
         
         while(!q.isEmpty()) {
             int u = q.poll();
