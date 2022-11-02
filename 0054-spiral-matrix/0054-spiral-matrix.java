@@ -27,7 +27,7 @@ class Solution {
                 res.add(matrix[currRow][currCol]);
                 matrix[currRow][currCol] = visited;
             }
-            currDir = (currDir + 1) % dir.length;
+            currDir = (currDir + 1) % dir.length; // changing the direction, in this order right -> down -> left -> up
             changeInDir++;
         }
         return res;
