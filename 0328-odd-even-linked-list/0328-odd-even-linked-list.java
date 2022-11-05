@@ -14,23 +14,20 @@ class Solution {
         if (head == null) {
             return null;
         }
-        ListNode p1 = head, p2 = head.next;
-        ListNode temp1 = p1, temp2 = p2;
+        ListNode oddNode = head, evenNode = head.next;
+        ListNode rememberEvenNode = evenNode;
         
-        while (p1 != null  && p2 != null) {
-            p1.next = p2.next;
-            if (p1.next != null) {
-             p1 = p1.next;   
+        while (oddNode != null  && evenNode != null) {
+            oddNode.next = evenNode.next;
+            if (oddNode.next != null) {
+             oddNode = oddNode.next;   
             }            
-//             if (p1 != null) {
-                
-//             }
-            p2.next = p1.next;
-            p2 = p2.next;
+            evenNode.next = oddNode.next;
+            evenNode = evenNode.next;
         }
         
-        p1.next = temp2;
+        oddNode.next = rememberEvenNode;
         
-        return temp1;
+        return head;
     }
 }
