@@ -26,7 +26,7 @@ class Solution {
                     str[startIdx++] = str[j++];
                 }   
                 reverse(str, startIdx - (j - i), startIdx - 1); // reverse the word
-                i = j;
+                i = j; // update i to how far in the string we're.
             }
         }
         return new String(str, 0, startIdx);
