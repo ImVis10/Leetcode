@@ -32,11 +32,11 @@ class Solution {
         return new String(str, 0, startIdx);
     }
 
-    private void reverse(char[] str, int start, int end) {
-        for (; start < end; start++, end--) {
-            char temp = str[start];
-            str[start] = str[end];
-            str[end] = temp;
-        }
+  private void reverse(char[] c, int start, int end) {
+    while (start < end) {
+      char temp = c[start];
+      c[start++] = c[end];
+      c[end--] = temp;
     }
+  }
 }
