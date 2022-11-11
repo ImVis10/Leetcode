@@ -8,8 +8,8 @@ class Solution {
         
         for(int i = 1 ; i < n ; i++) {
             for(int j = 0; j < i; j++) {
-                if (nums[j] < nums[i] && lis[j] + 1 > lis[i]) {
-                    lis[i] = lis[j] + 1;
+                if (nums[j] < nums[i]) {
+                    lis[i] = Math.max(lis[i], lis[j] + 1);
                 }
             }
         }
