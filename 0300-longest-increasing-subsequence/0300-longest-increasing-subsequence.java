@@ -6,7 +6,7 @@ class Solution {
         
         Arrays.fill(lis, 1);
         
-        for(int i = n - 1 ; i >= 0 ; i--) {
+        for(int i = n - 2 ; i >= 0 ; i--) {
             for(int j = i + 1; j < n; j++) {
                 if (nums[i] < nums[j]) {
                     lis[i] = Math.max(lis[i], lis[j] + 1);
