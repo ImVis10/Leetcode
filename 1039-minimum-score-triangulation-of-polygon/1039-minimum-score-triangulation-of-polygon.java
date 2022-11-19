@@ -4,9 +4,9 @@ class Solution {
         // length of the input array is equal to number of sides/vertices in the polygon 
         // a polygon is triangulated into n - 2 triangles
         int n = values.length;
-        int[][] dp = new int[n][n];
-
-        return pickThirdVertexAndSolveForSubProblems(values, 0, n - 1, dp);
+        // int[][] dp = new int[n][n];
+        // return pickThirdVertexAndSolveForSubProblems(values, 0, n - 1, dp);
+        return useTabulation(values);
         
     }
     
@@ -25,6 +25,15 @@ class Solution {
     private int useTabulation(int [] values) {
         int n = values.length;
         int[][] dp = new int[n][n];
-        return 0;
+        for (int i = n - 1; i >= 0; i--) {
+            for (int j = i + 2; j < n; j++) {
+                int res = Integer.MAX_VALUE;
+                for (int k = i + 1; k < j; k++) {
+                    res = Math.min((values[i]*values[k]*values[j] + dp[i][k] + dp[k][j]), res);
+                }
+                dp[i][j] = res;
+            }
+        }
+        return dp[0][n - 1];
     }
 }
