@@ -4,9 +4,9 @@ class Solution {
         // length of the input array is equal to number of sides/vertices in the polygon 
         // a polygon is triangulated into n - 2 triangles
         int n = values.length;
-        // int[][] dp = new int[n][n];
-        // return pickThirdVertexAndSolveForSubProblems(values, 0, n - 1, dp);
-        return useTabulation(values);
+        int[][] dp = new int[n][n];
+        return pickThirdVertexAndSolveForSubProblems(values, 0, n - 1, dp);
+        // return useTabulation(values);
         
     }
     
