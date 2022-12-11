@@ -50,38 +50,41 @@ class DriverClass
 
 class Pair {
   int node;
-  int distance;
-  public Pair(int node, int distance) {
+  int weight;
+  public Pair(int node, int weight) {
     this.node = node;
-    this.distance = distance;
+    this.weight = weight;
   }
 }
 
 public class Solution
 {
   public static int spanningTree(int V, ArrayList<ArrayList<ArrayList<Integer>>> adj) {
-    PriorityQueue<Pair> pq = new PriorityQueue<>((x, y) -> x.distance - y.distance);
-    int[] vis = new int[V];
-    pq.add(new Pair(0, 0));
-    int sum = 0;
-    while (pq.size() > 0) {
-      int wt = pq.peek().distance;
-      int node = pq.peek().node;
-      pq.remove();
+      PriorityQueue <Pair> pq = new PriorityQueue<>((x, y) -> x.weight - y.weight); // priority queue for min heap
+      int[] visited = new int[V + 1]; // V + 1 as vertices here start from 1 not 0
+      pq.add(new Pair(1, 0)); // as our nodes start from 1 not 0
+      int weightOfMST = 0;
+      while (!pq.isEmpty()) {
+		int weight = pq.peek().weight; // always the least weighted edge on the top, we can get that in O(1) as it is a min heap
+        int node = pq.peek().node; 
+        //System.out.println(node);
+        pq.remove(); // pop the node out from the priority queue
 
-      if (vis[node] == 1) {
-        continue;
-      }
-      vis[node] = 1;
-      sum += wt;
-      for (int i = 0; i < adj.get(node).size(); i++) {
-        int edW = adj.get(node).get(i).get(1);
-        int adjN = adj.get(node).get(i).get(0);
-        if (vis[adjN] == 0) {
-          pq.add(new Pair(adjN, edW));
+        if (visited[node] == 1) { // if the node is already visited (already a part of MST)
+          continue; // go to the next node
         }
+		
+		// if not visited yet (not a part of MST), proceed
+        visited[node] = 1; // mark the node as visited (add it to MST)
+        weightOfMST += weight; // add the node's weight to the weight of MST
+        for (int i = 0; i < adj.get(node).size(); i++) { // get all the adjacent nodes
+			int adjNode = adj.get(node).get(i).get(0); // get the node
+			int weightOfAdjNode = adj.get(node).get(i).get(1); // get the weight
+			if (visited[adjNode] == 0) { // if the adjacent node is not visited(not a part of the MST)
+				pq.add(new Pair(adjNode, weightOfAdjNode)); // add the adjacent node to priority queue
+			}
+		}
       }
-    }
-    return sum;
-  }
+      return weightOfMST;
+}
 }
