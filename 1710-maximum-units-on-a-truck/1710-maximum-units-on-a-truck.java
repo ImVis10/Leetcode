@@ -10,7 +10,7 @@ class Solution {
                 numUnits += boxType[0] * boxType[1];
                 truckSize -= boxType[0]; 
             } else { // numBoxes > truckSize
-                numUnits += truckSize * boxType[1];
+                numUnits += truckSize * boxType[1]; // take from the remaining space left in truck
                 return numUnits;
             }
         }
