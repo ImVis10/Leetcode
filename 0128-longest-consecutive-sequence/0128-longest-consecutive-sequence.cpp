@@ -18,11 +18,11 @@ public:
         //     }
         // }
         // return max(currSeq, maxSeq);
-        // if (nums.size() == 0) {
-        //     return 0;
-        // }
+        if (nums.size() == 0) {
+            return 0;
+        }
         unordered_set<int> set(nums.begin(), nums.end());
-        int maxSeq = 0, currSeq = 1;
+        int maxSeq = 1, currSeq = 1;
         for (int num : nums) {
             if (!set.count(num - 1)) { // if num - 1 is not present in the set
                 int currNum = num;
