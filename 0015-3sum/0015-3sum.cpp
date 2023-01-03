@@ -7,7 +7,7 @@ public:
         sort(nums.begin(), nums.end());
         for (int i = 0; i < nums.size(); i++) {
             if (!(nums[i] > 0)) { // as the array is sorted, remaining values can't be summed to 0.
-                if (i == 0 || nums[i] != nums[i - 1]) {
+                if (i == 0 || nums[i] != nums[i - 1]) { // inequality check to eliminate duplicates
                     twoSum(nums, i, res, target);
                 }
             }
@@ -22,8 +22,8 @@ public:
             int sum = nums[left] + nums[right] + nums[i];
             if (sum == target) {
                 res.push_back({nums[i], nums[left++], nums[right--]});
-                while (left < right && nums[left] == nums[left - 1]) {
-                    left++;
+                while (left < right && nums[right] == nums[right + 1]) {
+                    right--;
                 }
             } else if (sum < target) {
                 left++;
