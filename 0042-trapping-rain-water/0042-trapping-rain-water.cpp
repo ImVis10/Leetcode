@@ -23,7 +23,7 @@ public:
     int left = 0, right = height.size() - 1;
     int maxHeightOnLeft = height[left], maxHeightOnRight = height[right];
     while (left < right) {
-        if (maxHeightOnLeft < maxHeightOnRight) { // at each point only minimum of max heights on either of the directions is considered.
+        if (maxHeightOnLeft <= maxHeightOnRight) { // at each point only minimum of max heights on either of the directions is considered.
             left++;
             maxHeightOnLeft = max(maxHeightOnLeft, height[left]);
             res += maxHeightOnLeft - height[left];
