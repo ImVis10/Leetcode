@@ -15,14 +15,12 @@ private:
             return;
         }
         
-        if (numClose < numOpen) {
-            backtrack(numOpen, numClose + 1, n, str + ')', res);
-        }
-        
         if (numOpen < n) {
             backtrack(numOpen + 1, numClose, n, str + '(', res);
         }
         
-
+        if (numClose < numOpen) {
+            backtrack(numOpen, numClose + 1, n, str + ')', res);
+        }
     }
 };
