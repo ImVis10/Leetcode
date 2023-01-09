@@ -2,7 +2,7 @@ class Solution {
 public:
     int largestRectangleArea(vector<int>& heights) {
         int maxArea = 0;
-        stack<pair<int, int>> stack;
+        stack<pair<int, int>> stack; // starting index of histogram, height of the histogram
         
         for (int i = 0; i < heights.size(); i++) {
             int start = i; // start index of the histogram under consideration
