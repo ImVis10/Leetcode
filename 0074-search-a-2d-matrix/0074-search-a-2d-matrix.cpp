@@ -5,7 +5,7 @@ public:
         // each row --> O(log n), m rows --> m log n
         // But solution should be found in O(log mn) --> log m + log n
         // So first figure out which row the target is in O(log m) using binary search
-        //
+        // Then do another binary search on the target row 
         int numRows = matrix.size(), numCols = matrix[0].size();
         
         int topRow = 0, bottomRow = numRows - 1;
