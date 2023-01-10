@@ -2,13 +2,13 @@ class Solution {
 public:
     int minEatingSpeed(vector<int>& piles, int h) {
         // h will always be >= len(piles) as in each our only one pile of bananas can be eaten
-        // int low = 1, high = *max_element(piles.begin(), piles.end());
-        int low = 1;
-        int high = 0;
+        int low = 1, high = *max_element(piles.begin(), piles.end());
+//         int low = 1;
+//         int high = 0;
         
-         for (int pile : piles) {
-            high = max(high, pile);
-        }
+//          for (int pile : piles) {
+//             high = max(high, pile);
+//         }
         
         int k = high; // the maximum that can be eaten in an hour is the pile that has maximum bananas
         // max speed = k / hr
