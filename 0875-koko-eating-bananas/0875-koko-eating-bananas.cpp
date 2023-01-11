@@ -7,19 +7,19 @@ public:
         int k = high; // the maximum that can be eaten in an hour is the pile that has maximum bananas
         // max speed = k / hr
         
-        while (low <= high) {
+        while (low <= high) { // do a binary search to find the correct 'k'
             int mid = low + (high - low) / 2;
             long int numHours = 0;
             
             for (int pile : piles) {
-                numHours += ceil((double) pile / mid);
+                numHours += ceil((double) pile / mid); // number of hours taken to eat all the bananas
             }
                         
-            if (numHours <= h) {
-                k = min(mid, k);
-                high = mid - 1;
-            } else {
-                low = mid + 1;
+            if (numHours <= h) { // if number of hours to eat all the bananas is <= guard missing time
+                high = mid - 1; // then the search space is only till mid - 1;
+                k = min(mid, k); // finding minimu 'k' 
+            } else { // if number of hours to eat all the bananas is > guard msiing time
+                low = mid + 1; // then the search space starts from mid + 1
             }
         }
         return k;
