@@ -17,7 +17,7 @@ public:
                         
             if (numHours <= h) { // if number of hours to eat all the bananas is <= guard missing time
                 high = mid - 1; // then the search space is only till mid - 1;
-                k = min(mid, k); // finding minimu 'k' 
+                k = min(mid, k); // finding minimum 'k' 
             } else { // if number of hours to eat all the bananas is > guard msiing time
                 low = mid + 1; // then the search space starts from mid + 1
             }
