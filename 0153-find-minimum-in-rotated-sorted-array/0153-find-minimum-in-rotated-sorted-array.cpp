@@ -12,7 +12,7 @@ public:
         int low = 0, high = nums.size() - 1;
         
         while (low <= high) {
-            if (nums[low] < nums[high]) {
+            if (nums[low] < nums[high]) { // when we reach 2nd sorted array and low, high are at appropriate positions
                 res = min(nums[low], res);
                 break;
             }
@@ -20,9 +20,9 @@ public:
             int mid = low + (high - low) / 2;
             res = min(nums[mid], res);
             
-            if (nums[low] <= nums[mid]) {
+            if (nums[mid] >= nums[low]) { // we're in the 1st sorted array, so the result would be in the 2nd sorted array, which is to the right of mid
                 low = mid + 1;
-            } else {
+            } else { // we're in the 2nd sorted array, so the result might be to the left of mid (if mid falls after the result), so we take the minimum before itself (at line no. 21)
                 high = mid - 1;
             }
         }
