@@ -1,27 +1,29 @@
 class Solution {
 public:
     int minEatingSpeed(vector<int>& piles, int h) {
-        // h will always be >= len(piles) as in each our only one pile of bananas can be eaten
+        // in an hour the monkey can eat at the max 1 pile of bananas
+        // a single pile can take multiple hours as well
+        // the maximum number of bananas the monkey can eat in an hour = max(piles)
+        // so the solution can be in the range [1,2,.., max(piles)]
+        
         int low = 1, high = *max_element(piles.begin(), piles.end());
+        int res = high;
         
-        int k = high; // the maximum that can be eaten in an hour is the pile that has maximum bananas
-        // max speed = k / hr
-        
-        while (low <= high) { // do a binary search to find the correct 'k'
-            int mid = low + (high - low) / 2;
+        while (low <= high) {
+            int k = low + (high - low) / 2;
             long int numHours = 0;
             
-            for (int pile : piles) {
-                numHours += ceil((double) pile / mid); // number of hours taken to eat all the bananas
+            for(int pile : piles) {
+                numHours += ceil((double) pile / k);
             }
-                        
-            if (numHours <= h) { // if number of hours to eat all the bananas is <= guard missing time
-                high = mid - 1; // then the search space is only till mid - 1;
-                k = min(mid, k); // finding minimum 'k' 
-            } else { // if number of hours to eat all the bananas is > guard msiing time
-                low = mid + 1; // then the search space starts from mid + 1
+            
+            if (numHours <= h) {
+                res = min(res, k);
+                high = k - 1;
+            } else {
+                low = k + 1;
             }
         }
-        return k;
+        return res;
     }
 };
