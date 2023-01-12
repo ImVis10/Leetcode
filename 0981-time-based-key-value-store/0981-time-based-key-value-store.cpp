@@ -28,7 +28,7 @@ public:
             }
         }
         
-        if (high >= 0 && low > high) { // I think low > high check is redundant because if the execution reaches till here it means that low has obviously crossed high
+        if (high >= 0) { // I think low > high check is redundant because if the execution reaches till here it means that low has obviously crossed high
             return map[key][high].first;
         }
         
