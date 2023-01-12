@@ -21,12 +21,15 @@ public:
         // IDEA: MUTATE THE INPUT ARRAY TO INDICATE WHETHER THE NUMBER IS PRESENT IN THE ARRAY
         // SINCE ALL THE ELEMENTS ARE IN THE RANGE [1, N]
         // -VE SIGN INDICATES THAT THE NUMBER IS PRESENT IN THE ARRAY
+        // WE CAN CHANGE THE SIGN OF LET'S SAY ELEMENT AT POSITION 2 ONLY WHEN THERE IS 3 IN THE ARRAY
+        // TO GENERALIZE WE CAN SAY THAT THE ELEMENT i IS PRESENT IN THE ARRAY ONLY WHEN THE SIGN OF ELEMENT AT INDEX i - 1 IS -VE
         vector<int> res;
         int n = nums.size();
         
         for (int  i = 0; i < n; i++) {
-            if (nums[abs(nums[i]) - 1] > 0) {
-                nums[abs(nums[i]) - 1] *= - 1;
+            int gg = abs(nums[i]) - 1;
+            if (nums[gg] > 0) {
+                nums[gg] *= - 1;
             }
         }
         
