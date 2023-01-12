@@ -15,7 +15,7 @@ public:
         
         while(dividend1 >= divisor1) {
             int twoPowerOfQuotient = 0;
-            while (dividend1 > (divisor1 << (twoPowerOfQuotient + 1))) {
+            while ((divisor1 << (twoPowerOfQuotient + 1)) < dividend1) {
                 twoPowerOfQuotient++;
             }
             quotient += (1 << twoPowerOfQuotient);
