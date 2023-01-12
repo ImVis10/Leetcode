@@ -25,6 +25,6 @@ public:
         if (quotient > INT_MAX && sign == 1) {
             return INT_MAX ;
         }
-        return quotient * sign;
+        return sign == 1 ? quotient : -quotient;
     }
 };
