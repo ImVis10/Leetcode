@@ -15,25 +15,19 @@ public:
         }
         
         int low = 0, high = map[key].size() - 1;
+        string res = "";
         
         while (low <= high) {
             int mid = low + (high - low) / 2;
             
             if (timestamp < map[key][mid].second) {
                 high = mid - 1;
-            } else if (timestamp > map[key][mid].second) {
+            } else if (map[key][mid].second <= timestamp) {
                 low = mid + 1;
-            } else {
-                return map[key][mid].first;
+                res = map[key][mid].first;
             }
         }
-        
-        if (high >= 0) { // I think low > high check is redundant because if the execution reaches till here it means that low has obviously crossed high
-            return map[key][high].first;
-        }
-        
-        return "";
-        
+        return res;
     }
 };
 
