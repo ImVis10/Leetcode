@@ -18,7 +18,7 @@ private:
         int time = 0;
         
         for(auto child : adjList[node]) { // for all the nodes 'node' is connected to
-            if (child == parent) continue; // As this is not exactly a tree, in tree we can move in only one direction from parent to children. But this is an undirected graph, so this biderectional between parent and child. We will get into an infinite loop if not for this condition.
+            if (child == parent) continue; // As this is not exactly a tree, in tree we can move in only one direction from parent to children. But this is an undirected graph, so this biderectional between parent and child. We might get into an infinite loop if not for this condition.
             
             int childTime = dfs(child, node, hasApple); // time taken to collect all apples in the subtree rooted at 'child'
             
