@@ -1,10 +1,10 @@
 class Solution {
 public:
     int canCompleteCircuit(vector<int>& gas, vector<int>& cost) {
-        // start with the station which has enough gas to travel to next station
-        // so gas[i] > cost[i]
         int n = gas.size();
         int totalGas = 0, totalCost = 0;
+        
+        // if the sum of gas is less than the total cost, it means that there is not enough gas to make the round trip. The cost is higher than the amount of gas available to make a round trip
         if (accumulate(gas.begin(), gas.end(), totalGas) < accumulate(cost.begin(), cost.end(), totalCost)) {
             return -1;
         }
