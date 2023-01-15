@@ -29,7 +29,6 @@ private:
         
         // eg: Suppose a tree is rooted at a node 'p'. Height of left subtree is 4 and it is height-balanced. Height of right subtree is 7 and it is also height balanced. So eventhough both the subtrees of 'p' are height-balanced. it doesn't mean that subtree rooted at 'p' is balanced as the difference between the subtrees of p is > 1 (7 - 4 = 3 > 1)
         if (root == NULL) {
-            // height = -1;
             return true;
         }
         
