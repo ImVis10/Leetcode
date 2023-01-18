@@ -12,7 +12,7 @@ public:
         int n = nums.size();
         
         for (int i = 0; i < n; i++) {
-            if (nums[i] <= 0) { // we actually of no use with non-positive numbers
+            if (nums[i] <= 0) { // we actually have no use with non-positive numbers
                 nums[i] = n + 2; // so changing them to a value which can't be the solution (len(nums) + 2) so that no conflict arises while finding the actual result
             }
         }
@@ -20,7 +20,7 @@ public:
         for (int  i = 0; i < n; i++) {
             if (abs(nums[i]) <= n && nums[abs(nums[i]) - 1] > 0) {
                 nums[abs(nums[i]) - 1] *= -1; // a -ve value indicates that 'i' is present in the input array
-                // Detailed : a -ve value indicates that the the abs(value next to it) is present in the array 
+                // Detailed : a -ve value indicates that the the abs(value next to it) is present in the array
             }
         }
         
