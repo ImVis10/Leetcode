@@ -21,6 +21,7 @@ public:
         while (stops <= k) {
             int nodesInCurrLevel = q.size();
             
+            // Generic BFS
             while(nodesInCurrLevel > 0) {
                 auto [node, priceAtCurrLevel] = q.front();
                 q.pop();
