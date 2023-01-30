@@ -34,7 +34,7 @@ public:
         
         int left = 0, curr = 0, right = nums.size() - 1;
         
-        /** left --> every index before 'left' is 0, right --> every index after 'right' is 0
+        /** left --> every index before 'left' is 0, right --> every index after 'right' is 2
         Algo - 'left' group grow to the right from the left of the array,  keep the 'mid' group just after the 'left' group, 'right' group grow to the left from the right of the array.
         Algo indexes 3 locations - rightmost index of the 'left' group, rightmost index of 'mid' group and leftmost index of the 'right' group.
         Elements that are yet to be sorted fall in between mid and right groups.
