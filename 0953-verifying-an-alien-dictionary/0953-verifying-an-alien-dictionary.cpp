@@ -14,15 +14,15 @@ public:
             for (int j = 0; j < w1.length(); j++) {
                 if (j == w2.length()) { // if w2 is a prefix of w1, w2 is lexicographically before w1
                     return false;
-                } else if (w1[j] != w2[j]) {
-                    if (map[w1[j]] > map[w2[j]]) {
+                } else if (w1[j] != w2[j]) { // if a mismatch found
+                    if (map[w1[j]] > map[w2[j]]) { // if char in w1 is lexicographically after char in w2, words are not in correct lexicographical order
                         return false;
-                    } else {
+                    } else { // go to the next pair of words
                         break;
                     }
                 }
             }
         }
-        return true;
+        return true; // if all the pair of words are in lexicographical order
     }
 };
