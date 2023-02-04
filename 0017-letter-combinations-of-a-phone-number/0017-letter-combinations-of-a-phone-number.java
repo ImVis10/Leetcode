@@ -12,7 +12,7 @@ class Solution {
     public List<String> letterCombinations(String digits) {
         int len = digits.length();
         List<String> res = new ArrayList<>();
-        if (digits.length() == 0) {
+        if (digits.length() == 0) { // base case
             return res;
         }
         dfs(0, len, new StringBuilder(), res, digits);
