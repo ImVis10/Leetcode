@@ -21,9 +21,9 @@ public:
         } else if (key > root->val) {
             root->right = deleteNode(root->right, key);
         } else {
-            if (root->left == NULL) {
+            if (root->left == NULL) { // if left subtree of key is NULL
                 return root->right;
-            } else if (root->right == NULL) {
+            } else if (root->right == NULL) { // if right subtree of key is NULL
                 return root->left;
             }
             
