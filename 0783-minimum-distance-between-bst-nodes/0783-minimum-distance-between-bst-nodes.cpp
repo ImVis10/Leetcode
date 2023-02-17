@@ -11,19 +11,15 @@
  */
 class Solution {
 public:
-    vector<int> res;
+    vector<int> inorderList;
     
     int minDiffInBST(TreeNode* root) {
-        res = inorderTraversal(root);
+        inorderList = inorderTraversal(root);
         
         int minDiff = INT_MAX;
         
-        for (int i = 0; i < res.size() - 1; i++) {
-            for (int j = i + 1; j < res.size(); j++) {
-                if (abs(res[i] - res[j]) < minDiff) {
-                    minDiff = abs(res[i] - res[j]);
-                }
-            }
+        for (int i = 0; i < inorderList.size() - 1; i++) {
+            minDiff = min(minDiff, abs(inorderList[i] - inorderList[i + 1]));
         }
         
         return minDiff;
@@ -37,12 +33,12 @@ private:
         if (root == NULL) return;
         
         dfs(root->left);
-        res.push_back(root->val);
+        inorderList.push_back(root->val);
         dfs(root->right);
     }
     
     vector<int> inorderTraversal(TreeNode* root) {
         dfs(root);
-        return res;
+        return inorderList;
     }
 };
