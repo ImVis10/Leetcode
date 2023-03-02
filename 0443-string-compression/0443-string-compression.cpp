@@ -10,13 +10,11 @@ public:
                 groupLength += 1;
             }
             
-            chars[res] = chars[i];
-            res += 1;
+            chars[res++] = chars[i];
             
             if (groupLength > 1) {
                 for (char ch : to_string(groupLength)) {
-                    chars[res] = ch;
-                    res += 1;
+                    chars[res++] = ch;
                 }
             }
             
