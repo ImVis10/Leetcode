@@ -39,6 +39,7 @@ public:
         for (int i = 0; i < 4; i++) {
             if (!dfs(currRow + row[i], currCol + col[i], nRows, nCols, grid, visited)) {
                 isClosed = false;
+                // break;
             }
         }
         
