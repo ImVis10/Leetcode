@@ -4,27 +4,41 @@ public:
         int nRows = matrix.size();
         int nCols = matrix[0].size();
         
-        vector<int> rowList;
-        vector<int> colList;
+        int col0 = 1;
         
         for (int i = 0; i < nRows; i++) {
             for (int j = 0; j < nCols; j++) {
                 if (matrix[i][j] == 0) {
-                    rowList.emplace_back(i);
-                    colList.emplace_back(j);
+                    matrix[i][0] = 0;
+                    
+                    if (j != 0) {
+                        matrix[0][j] = 0;
+                    } else {
+                        col0 = 0;
+                    }
                 }
             }
         }
         
-        for (int i = 0; i < rowList.size(); i++) {
-            for (int j = 0; j < nCols; j++) {
-                matrix[rowList[i]][j] = 0;
+        for (int i = 1; i < nRows; i++) {
+            for (int j = 1; j < nCols; j++) {
+                if (matrix[i][j] != 0) {
+                    if (matrix[i][0] == 0 || matrix[0][j] == 0) {
+                        matrix[i][j] = 0;
+                    }
+                }
             }
         }
         
-        for (int i = 0; i < colList.size(); i++) {
-            for (int j = 0; j < nRows; j++) {
-                matrix[j][colList[i]] = 0;
+        if (matrix[0][0] == 0) {
+            for (int j = 0; j < nCols; j++) {
+                matrix[0][j] = 0;
+            }
+        }
+        
+        if (col0 == 0) {
+            for (int i = 0; i < nRows; i++) {
+                matrix[i][0] = 0;
             }
         }
     }
