@@ -13,6 +13,5 @@ class Solution:
                     newMask = mask | (1 << i) | (1 << j) # OR to write
                     score = op * math.gcd(nums[i], nums[j])
                     cache[mask] = max(cache[mask], score + dfs(newMask, op + 1))
-                    
             return cache[mask]
         return dfs(0, 1)
