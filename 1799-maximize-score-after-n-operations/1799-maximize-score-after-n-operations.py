@@ -12,7 +12,7 @@ class Solution:
                         # 00'0'00 -- check if the the 3rd bit is already used i.e. i = 3
                         # left shift 1 until the 3rd bit and do a bitwise AND
                         continue;
-                    newMask = mask | (1 << i) | (1 << j) # OR to write
+                    newMask = mask | (1 << i) | (1 << j) # OR to write, to indicate that the corresponding bits have been used and to update the mask
                     score = op * math.gcd(nums[i], nums[j])
                     cache[mask] = max(cache[mask], score + dfs(newMask, op + 1))
             return cache[mask]
