@@ -14,18 +14,38 @@ class Solution{
         //Your code here
         //return vector with correct order of elements
         
-        set<int> set;
+        vector<int> res;
         
-        for (int i = 0; i < n; i++) {
-            set.insert(arr1[i]);
+        int i = 0, j = 0;
+        
+        while (i < n && j < m) {
+            if (arr1[i] <= arr2[j]) {
+                if (res.empty() || res.back() != arr1[i]) {
+                    res.push_back(arr1[i]);
+                }
+                i++;
+            } else {
+                if (res.empty() || res.back() != arr2[j]) {
+                    res.push_back(arr2[j]);
+                }
+                j++;
+            }
         }
         
-        for (int i = 0; i < m; i++) {
-            set.insert(arr2[i]);
+        while (i < n) {
+            if (res.back() != arr1[i]) {
+                res.push_back(arr1[i]); 
+            }
+            
+            i++;
         }
         
-        vector<int> res(set.begin(), set.end());
-        
+        while (j < m) {
+            if (res.back() != arr2[j]) {
+                res.push_back(arr2[j]);
+            }
+            j++;
+        }
         return res;
     }
 };
