@@ -20,6 +20,10 @@ public:
             }
         }
         
+        if (topRow > bottomRow) {
+            return false;
+        }
+        
         
         // check if the element is present in the row
         int low = 0, high = numCols - 1;
