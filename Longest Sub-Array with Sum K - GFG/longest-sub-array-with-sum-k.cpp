@@ -23,8 +23,8 @@ class Solution{
                 int currLen = i - prefixSum[rem];
                 maxLen = max(maxLen, currLen);
             }
-            if (prefixSum.find(sum) == prefixSum.end())
-                prefixSum[sum] = i;
+            if (prefixSum.find(sum) == prefixSum.end()) // we need the leftmost 'x - k', so only update when the 'x - k' was not present in the map previously
+                prefixSum[sum] = i;                     // eg: [2, 0, 0, 3] -- for 2 we should store (2, 0) not (2,2), as we should maximize the size of the subarry having sum == K, in this case (0, 0, 3)
         }
         return maxLen;
     } 
