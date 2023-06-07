@@ -27,7 +27,28 @@ class Solution{
                 prefixSum[sum] = i;                     // eg: [2, 0, 0, 3] -- for 2 we should store (2, 0) not (2,2), as we should maximize the size of the subarry having sum == K, in this case (0, 0, 3)
         }
         return maxLen;
-    } 
+    }
+    // THIS WORKS ONLY FOR POSITIVES
+    //     int n = N;
+    //     int maxLen = 0;
+    //     int left = 0, right = 0;
+        
+    //     int sum = A[0];
+        
+    //     while (right < n) {
+    //         while (left <= right && sum > K) { // shrink from left when the sum crosses K
+    //             sum -= A[left];
+    //             left++;
+    //         }
+    //         if (sum == K) {
+    //             maxLen = max(maxLen, right - left + 1);
+    //         }
+    //         right++;
+    //         if (right < n)
+    //             sum += A[right];
+    //     }
+    //     return maxLen;
+    // } 
 
 };
 
