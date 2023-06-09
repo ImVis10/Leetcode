@@ -1,33 +1,31 @@
 class Solution {
 public:
     void nextPermutation(vector<int>& nums) {
+        int dipAt = -1;
         int n = nums.size();
         
-        int bk_pnt = -1;
-        
-        // Find the breaking point i.e. where the dip is
+        // find the dip (from the back)
         for (int i = n - 2; i >= 0; i--) {
             if (nums[i] < nums[i + 1]) {
-                bk_pnt = i;
+                dipAt = i;
                 break;
             }
         }
         
-        // if input is already the last permutation, just reverse the input
-        if (bk_pnt == -1) {
+        if (dipAt == -1) { // if no dip (from the back), it means that we're already the last permutation as the array is sorted (in non-decreasing order) completely from the back
             reverse(nums.begin(), nums.end());
             return;
         }
         
-        // find the element to swap with at the breaking point
-        for (int i = n - 1; i > bk_pnt; i--) {
-            if (nums[i] > nums[bk_pnt]) {
-                swap(nums[i], nums[bk_pnt]);
+        // swap the element at dip with the element just greater than it (from the back)
+        for (int i = n - 1; i >= 0; i--) {
+            if (nums[i] > nums[dipAt]) {
+                swap(nums[i], nums[dipAt]);
                 break;
             }
         }
         
-        // reverse the rest of the array i.e. after the breaking point
-        reverse(nums.begin() + bk_pnt + 1, nums.end());
+        // Reverse the rest of the array (from the dip + 1 to end)
+        reverse(nums.begin() + dipAt + 1, nums.end());
     }
 };
