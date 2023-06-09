@@ -5,7 +5,7 @@ public:
         // can make use of bitwise operators
         
         int n = nums.size();
-        int res = 0;
+        int res = 0; // all bits are initially zero
         
         for (int i = 0; i < 32; i++) {
             int bit = 1 << i;
@@ -16,7 +16,7 @@ public:
                     currBitCount++;
                 } 
             }
-            if (currBitCount > n / 2) { // set the res to the currBit
+            if (currBitCount > n / 2) { // set the res to the currBit, so at the end after getting done with all the bits, we'll be making a majority element by ourselves.
                 res |= bit;
             }
         }
