@@ -36,18 +36,19 @@ public:
                 cnt--;
             }
         }
+        return res;
         
-        cnt = 0;
+// WE DON'T NEED THE BELOW PART AS IT IS MENTIONED THAT THERE WILL AWAYS BE A MAJORITY ELEMENT
         
-        for (int num : nums) {
-            if (res == num) {
-                cnt++;
-            }
-        }
+//         for (int num : nums) {
+//             if (res == num) {
+//                 cnt++;
+//             }
+//         }
         
-        if (cnt > nums.size() / 2) {
-            return res;
-        }
-        return 0;
+//         if (cnt > nums.size() / 2) {
+//             return res;
+//         }
+        // return 0;
     }
 };
