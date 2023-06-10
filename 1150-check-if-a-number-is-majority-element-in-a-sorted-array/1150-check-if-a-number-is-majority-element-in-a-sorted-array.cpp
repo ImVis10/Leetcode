@@ -5,6 +5,7 @@ public:
         int firstInstanceAt = 0;
         int cnt = 0;
         
+        // find the index of first instance 
         while (low <= high) {
             int mid = (low + high) / 2;
             if ((mid == 0 || nums[mid - 1] < target) && nums[mid] == target) {
@@ -18,11 +19,13 @@ public:
         }
         
         for (int i = firstInstanceAt; i < nums.size(); i++) {
-            if (nums[i] == target) {
-                cnt++;
+            if (nums[i] != target) {
+                break;
             }
+            cnt++;
         }
         
         return cnt > nums.size() / 2;
     }
+    
 };
