@@ -10,19 +10,13 @@
  * };
  */
 class Solution {
-    vector<int> nodes;
 public:
+    int res = INT_MAX;
+    
+    TreeNode* prevNode;
+    
     int getMinimumDifference(TreeNode* root) {
-        int res = INT_MAX;
         inorderTraversal(root);
-        
-        int n = nodes.size();
-        for (int i = 1; i < n; i++) {
-            int diff = abs(nodes[i] - nodes[i - 1]);
-            if (diff < res) {
-                res = diff;
-            }
-        }
         return res;
     }
     
@@ -32,7 +26,10 @@ private:
             return;
         }
         inorderTraversal(root->left);
-        nodes.push_back(root->val);
+        if (prevNode != NULL) {
+            res = min(res, root->val - prevNode->val);
+        }
+        prevNode = root;
         inorderTraversal(root->right);
     }
     
