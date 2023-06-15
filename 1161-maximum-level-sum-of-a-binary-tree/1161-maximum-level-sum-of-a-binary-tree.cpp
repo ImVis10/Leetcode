@@ -19,6 +19,8 @@ public:
         int maxSum = INT_MIN;
         int res = -1;
         int level = 0;
+        
+        // BFS
         queue<TreeNode*> q;
         q.push(root);
         
@@ -26,7 +28,7 @@ public:
             int levelSize = q.size();
             int sum = 0;
             level += 1;
-            for (int i = 0; i < levelSize; i++) {
+            for (int i = 0; i < levelSize; i++) { // for each level at a time
                 TreeNode* curr = q.front();
                 q.pop();
                 sum += curr->val;
