@@ -21,7 +21,7 @@ public:
         
         int maxProfit = 0;
         
-        // Idea is a task with difficulty 'd' can be taken upon by a worker with ability >= d, and work on maximum profit tasks
+        // Idea is that a task with difficulty 'd' can be taken upon by a worker with ability >= d, and work on maximum profit tasks
         // eg: a task with difficulty '3' can be taken upon a worker with ability 4, 5, 6...
         // set the maximum profit attainable at each difficulty
         for (int i = 0; i <= maxLevel; i++) {
