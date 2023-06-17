@@ -4,13 +4,14 @@ public:
         int n = profit.size();
         int m = worker.size();
         int res= 0;
-        
-        vector<int> arr(1000001, 0);
-        
+                
         int maxDifficulty = *max_element(difficulty.begin(), difficulty.end());
         int maxAbility = *max_element(worker.begin(), worker.end());
         
         int maxLevel = max(maxDifficulty, maxAbility);
+        
+        vector<int> arr(maxLevel + 1, 0);
+
         
         // make a map of difficulty (key) --> profit (value)
         for (int i = 0; i < n; i++) {
