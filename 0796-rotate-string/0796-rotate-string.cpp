@@ -1,26 +1,25 @@
 class Solution {
 public:
     bool rotateString(string s, string goal) {
-        // if (s.length() != goal.length()) {
-        //     return false;
-        // }
         if (s == goal) {
             return true;
         }
+        
         string temp = s;
+        
         s = removespace(s);
         goal = removespace(goal);
         
         int len = s.length();
 
         for (int i = 0; i < len; i++) {
-            if (s == goal) {
-                return true;
-            } else {
+            if (s != goal) {
                 s = temp;
                 reverse(s.begin(), s.end());
                 reverse(s.begin(), s.begin() + len - i - 1);
                 reverse(s.begin() + len - i - 1, s.end());
+            } else {
+                return true;
             }
         }
         return false;
