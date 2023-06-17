@@ -4,7 +4,8 @@ public:
         int n = profit.size();
         int m = worker.size();
         int res= 0;
-                
+        
+        // To reduce time and space complexity
         int maxDifficulty = *max_element(difficulty.begin(), difficulty.end());
         int maxAbility = *max_element(worker.begin(), worker.end());
         
