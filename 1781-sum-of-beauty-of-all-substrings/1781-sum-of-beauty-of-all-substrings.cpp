@@ -19,9 +19,9 @@ private:
         int minFreq = INT_MAX;
         for (auto& entry : map) {
             maxFreq = max(maxFreq , entry.second);
-            if (entry.second >= 1) {
+            // if (entry.second >= 1) {
                 minFreq = min(minFreq, entry.second);
-            }
+            // }
         }
         return maxFreq - minFreq;
     }
