@@ -7,23 +7,24 @@ public:
             map[ch]++;
         }
         
-        vector<pair<char, int>> A;
-
-        for (auto& it : map) 
-            A.push_back(it);
-
-        sort(A.begin(), A.end(), cmp);
+        auto maxVal = max_element(map.begin(), map.end(), [](const auto& x, const auto& y) {
+            return x.second < y.second;
+        });
         
-        for (auto& entry : A) {
-            while (entry.second--) {
-                res += entry.first;
+        vector<vector<char>> buckets(maxVal->second + 1);
+        
+        for (auto& entry : map) {
+            int freq = map[entry.first];
+            buckets[freq].push_back(entry.first);
+        }
+        
+        for (int i = buckets.size() - 1; i > 0; i--) {
+            for (char ch : buckets[i]) {
+                for (int j = 0; j < i; j++) {
+                    res += ch;
+                }
             }
         }
         return res;
     }
-    
-    static bool cmp(pair<char, int>& a, pair<char, int>& b) {
-        return a.second > b.second;
-    }
-  
 };
