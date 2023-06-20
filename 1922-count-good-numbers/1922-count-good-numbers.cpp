@@ -15,12 +15,14 @@ public:
            BUT WE CAN'T USE THE POW FUNCTION FROM STL AS THAT WON'T TAKE CARE OF THE THE CONSTRAINT: Since the answer may be large, return it modulo 109 + 7.
            SO WRITING OUR OWN POW FUNCTION IS A LOT BETTER
         **/
+        // GOING AHEAD WITH APPROACH 2
         long long numOddIndices = n / 2;
         long long numEvenIndices = n / 2 + (n % 2);
         return (power(5, numEvenIndices) * power(4, numOddIndices)) % mod; 
     }
 private:
     long long power(long long x, long long y) {
+        // BASE CASE OF RECURSION
         if (y == 0) {
             return 1;
         } else if (y == 1) {
