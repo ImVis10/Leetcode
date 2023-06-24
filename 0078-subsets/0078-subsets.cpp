@@ -14,10 +14,10 @@ private:
             res.push_back(subRes);
             return;
         }
-        subRes.push_back(nums[idx]);
+        subRes.push_back(nums[idx]); // pick
         printAllSubSequences(idx + 1, n, nums, subRes, res);
         
-        subRes.pop_back();
+        subRes.pop_back(); // don't pick
         printAllSubSequences(idx + 1, n, nums, subRes, res);
     }
 };
