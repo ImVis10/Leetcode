@@ -2,32 +2,34 @@ class Solution {
 public:
     vector<vector<int>> permuteUnique(vector<int>& nums) {
         vector<int> subRes;
-        set<vector<int>> set;
-        vector<bool> picked(nums.size(), false);
-        recurse(nums, subRes, set, picked);
         vector<vector<int>> res;
-        for (auto it : set) {
-            res.push_back(it);
+        unordered_map<int, int> count;
+        for (auto num : nums) {
+            count[num]++;
         }
+        recurse(nums, subRes, res, count);
         return res;
     }
     
 private:
-    void recurse(vector<int>& arr, vector<int> subRes, set<vector<int>>& set, vector<bool> picked) {
+    void recurse(vector<int>& arr, vector<int> subRes, vector<vector<int>>& res, unordered_map<int, int> count) {
       if (subRes.size() == arr.size()) {
-        set.insert(subRes);
+        res.push_back(subRes);
         return;
       }
+      for (auto entry : count) {
+          int key = entry.first;
+          int value = entry.second;
 
-      for (int i = 0; i < arr.size(); i++) {
-        if (!picked[i]) {
-          subRes.push_back(arr[i]);
-          picked[i] = true;
-          recurse(arr, subRes, set, picked);
-
+          if (value == 0) {
+              continue;
+          }
+          subRes.push_back(key);
+          count[key]--;
+          recurse(arr, subRes, res, count);
+          
           subRes.pop_back();
-          picked[i] = false;
-        }
+          count[key]++; // take the map back to its initial filled state
       }
     }
 };
