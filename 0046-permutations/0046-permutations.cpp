@@ -1,29 +1,22 @@
 class Solution {
 public:
     vector<vector<int>> permute(vector<int>& nums) {
-        vector<int> subRes;
-        vector<vector<int>> res;
-        vector<bool> picked(nums.size(), false);
-        recurse(nums, subRes, res, picked);
-        return res;
+      vector<vector<int>> res;
+      recurse(0, nums, res);
+      return res;
     }
     
 private:
-    void recurse(vector<int>& arr, vector<int> subRes, vector<vector<int>>& res, vector<bool> picked) {
-      if (subRes.size() == arr.size()) {
-        res.push_back(subRes);
+    void recurse(int idx, vector<int>& arr, vector<vector<int>>& res) {
+      if (idx == arr.size()) {
+        res.push_back(arr);
         return;
       }
 
-      for (int i = 0; i < arr.size(); i++) {
-        if (!picked[i]) {
-          subRes.push_back(arr[i]);
-          picked[i] = true;
-          recurse(arr, subRes, res, picked);
-
-          subRes.pop_back();
-          picked[i] = false;
-        }
+      for (int i = idx; i < arr.size(); i++) {
+        swap(arr[i], arr[idx]);
+        recurse(idx + 1, arr, res);
+        swap(arr[i], arr[idx]); // to take the array back to its original
       }
     }
 };
