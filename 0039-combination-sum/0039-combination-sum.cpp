@@ -19,7 +19,7 @@ private:
         if (nums[idx] <= target) {
             comb.push_back(nums[idx]);
             recurse(idx, nums, target - nums[idx], res, comb);
-            comb.pop_back();
+            comb.pop_back(); // restore the array back to the state from where we have to make recurisve calls again
         }
         recurse(idx + 1, nums, target, res, comb);
     }
