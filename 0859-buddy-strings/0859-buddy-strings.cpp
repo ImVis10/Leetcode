@@ -37,7 +37,8 @@ public:
             r--;
         }
         
-        swap(s[l], s[r]);
+        if (l < r)
+            swap(s[l], s[r]);
         
         return s == goal;
     }
