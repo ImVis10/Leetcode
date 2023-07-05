@@ -8,7 +8,7 @@ public:
         
         for (int i = 0; i < nums.size(); i++) {
             numZeros += nums[i] == 0;
-            if (numZeros > 1) {
+            while (numZeros > 1) {
                 numZeros -= (nums[start] == 0);
                 start++;
             }
