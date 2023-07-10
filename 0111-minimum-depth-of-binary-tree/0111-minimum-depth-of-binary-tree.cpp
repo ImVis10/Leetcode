@@ -23,7 +23,8 @@ private:
         
         if (node->left == NULL) {
             return 1 + dfs(node->right);
-        } else if (node->right == NULL) {
+        } 
+        if (node->right == NULL) {
             return 1 + dfs(node->left);
         }
         
