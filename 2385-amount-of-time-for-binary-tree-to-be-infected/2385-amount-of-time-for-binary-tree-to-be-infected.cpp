@@ -29,7 +29,7 @@ public:
             time++;
             for (int i = 0; i < qSize; i++) {
                 TreeNode* currNode = q.front();
-                cout << currNode->val << endl;
+                // cout << currNode->val << endl;
                 q.pop();
                 if (parent[currNode] && !visited[parent[currNode]]) {
                     q.push(parent[currNode]);
