@@ -19,21 +19,22 @@ public:
         visited[target] = true;
         int currDistance = 0;
         
+        // CONVERTED TREE TO AN UNDIRECTED GRAPH, SO NOW WE HAVE PARENT POINTERS AS WELL
         while (!q.empty()) {
             int qSize = q.size();
             if (currDistance++ == k) break;
             for (int i = 0; i < qSize; i++) {
                 TreeNode* currNode = q.front();
                 q.pop(); 
-                if (parent[currNode] && !visited[parent[currNode]]) {
+                if (parent[currNode] && !visited[parent[currNode]]) { // for parent
                     q.push(parent[currNode]);
                     visited[parent[currNode]] = true;
                 }
-                if (currNode->left && !visited[currNode->left]) {
+                if (currNode->left && !visited[currNode->left]) { // left child
                     q.push(currNode->left);
                     visited[currNode->left] = true;
                 }
-                if (currNode->right && !visited[currNode->right]) {
+                if (currNode->right && !visited[currNode->right]) { // right child
                     q.push(currNode->right);
                     visited[currNode->right] = true;
                 }
