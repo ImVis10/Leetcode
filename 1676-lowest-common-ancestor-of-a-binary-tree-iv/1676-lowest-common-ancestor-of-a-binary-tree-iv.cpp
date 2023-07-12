@@ -13,16 +13,12 @@ class Solution {
     int count = 0;
 public:
     TreeNode* lowestCommonAncestor(TreeNode* root, vector<TreeNode*> &nodes) {
-        set<TreeNode*> set(nodes.begin(), nodes.end()); // just so that it'll be useful when we encounter this node
-        return getLCA(root, set);
-    }
-private:
-    TreeNode* getLCA(TreeNode* root, set<TreeNode*> set) {
-        if(!root) return root;
-        if(set.count(root)) return root;
-        
-        TreeNode* left = getLCA(root->left, set);
-        TreeNode* right = getLCA(root->right, set);
+        if (!root) return root;
+        for (auto& node : nodes) {
+            if (node == root) return root;
+        }
+        TreeNode* left = lowestCommonAncestor(root->left, nodes);
+        TreeNode* right = lowestCommonAncestor(root->right, nodes);
         
         if(!left) return right;
         else if (!right) return left;
