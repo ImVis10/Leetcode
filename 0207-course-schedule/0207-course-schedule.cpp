@@ -5,7 +5,7 @@ public:
         vector<int> outDegree(numCourses);
         
         for (auto& nodes : prerequisites) {
-            cout << nodes.size();
+            // cout << nodes.size();
             inward[nodes[1]].push_back(nodes[0]);
             outDegree[nodes[0]]++;
         }
