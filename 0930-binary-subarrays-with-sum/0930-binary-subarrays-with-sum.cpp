@@ -20,7 +20,6 @@ private:
         if (goal < 0) return 0;
         int res = 0;
         int n = nums.size(), sum = 0;
-        
         for (int i = 0, j = 0; j < n; j++) {
             sum += nums[j];
             while (sum > goal) {
