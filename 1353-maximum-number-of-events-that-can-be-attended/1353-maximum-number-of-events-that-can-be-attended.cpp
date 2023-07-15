@@ -18,10 +18,10 @@ public:
         int day = 1, cnt = 0, eventId = 0;
         
         while (day <= numDays) {
-            if (eventId < numEvents && pq.empty()) {
+            if (eventId < numEvents && pq.empty()) { // if no events are  available for today, go to the next available event
                 day = events[eventId][0];
             }
-            while (eventId < events.size() && events[eventId][0] <= day) {
+            while (eventId < events.size() && events[eventId][0] <= day) { // events starting from today are newly available. Add them to heap.
                 pq.push(events[eventId][1]);
                 eventId++;
             }
@@ -29,7 +29,7 @@ public:
                 pq.pop();
             }
 
-            if (!pq.empty()) {
+            if (!pq.empty()) { // attend the event that'll end at the earliest
                 pq.pop();
                 cnt++;
             } else if (eventId >= events.size()) {
