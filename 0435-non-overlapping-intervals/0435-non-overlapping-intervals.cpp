@@ -32,5 +32,6 @@ public:
             res++;
         }
         return res;
+        // BUT THE CATCH HERE IS I'M MODIFYING THE INPUT, WHICH IS NOT EXACTLY ADVISABLE IN THE INTERVIEWS AND GENERALLY NOT CONSIDERED A GOOD PRACTICE
     }
 };
