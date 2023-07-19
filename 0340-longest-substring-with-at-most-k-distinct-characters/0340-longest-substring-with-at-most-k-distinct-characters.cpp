@@ -9,10 +9,8 @@ public:
             while (freq.size() > k) {
                 if (--freq[s[i]] == 0)  {
                     freq.erase(s[i]);
-                    i++;
-                } else {
-                    i++;
                 }
+                i++;
             }
             res = max(res, j - i + 1);
         }
