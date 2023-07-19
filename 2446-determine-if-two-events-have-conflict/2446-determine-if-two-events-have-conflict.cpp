@@ -10,9 +10,10 @@ public:
         
         // I can do 2 things here
         // 1. sort the events based on start time and do whatever I did above, but waste of time I guess
-        if (event2[0] < event1[0]) swap(event1, event2);
-        return event2[0] <= event1[1];
+        // if (event2[0] < event1[0]) swap(event1, event2);
+        // return event2[0] <= event1[1];
         
-        // 2. instead of swapping and tampering the input, I can just check if event1
+        // 2. instead of swapping and tampering the input, I can just check which event starts first and do things accordingly i.e. whatever I did above
+        return event1[0] <= event2[0] ? event2[0] <= event1[1] : event1[0] <= event2[1];
     }
 };
