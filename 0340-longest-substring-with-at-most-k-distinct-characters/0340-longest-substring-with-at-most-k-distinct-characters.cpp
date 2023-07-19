@@ -7,9 +7,7 @@ public:
         for (int i = 0, j = 0; j < n; j++) {
             freq[s[j]]++;
             while (freq.size() > k) {
-                if (--freq[s[i]] == 0)  {
-                    freq.erase(s[i]);
-                }
+                if (--freq[s[i]] == 0) freq.erase(s[i]);
                 i++;
             }
             res = max(res, j - i + 1);
