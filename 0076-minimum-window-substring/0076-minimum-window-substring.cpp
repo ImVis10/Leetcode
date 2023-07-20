@@ -21,11 +21,10 @@ public:
                     moveStart = i;
                 }
                 map[s[i]]++;
-                if (map[s[i++]] > 0) foundCharsFromT--;
+                if (map[s[i++]] > 0) foundCharsFromT--; // > 0 because only then we're sure that we found char from T in S.
             }
         }
         return validMinWindowLen != INT_MAX ? s.substr(moveStart, validMinWindowLen) : "";
         // since it's a minimum window, the window must shrink
-        
     }
 };
