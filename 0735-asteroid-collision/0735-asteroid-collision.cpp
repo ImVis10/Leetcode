@@ -2,23 +2,21 @@ class Solution {
 public:
     vector<int> asteroidCollision(vector<int>& asteroids) {
         stack<int> stack;
-        for (int i : asteroids) {
-            int destroy = 1;
-            while (!stack.empty() && hasDiffSign(stack.top(), i)) { // if i and top of stack has different sign, pop the top
+        for (auto& asteroid : asteroids) {
+            int survive = 1;
+            while (!stack.empty() && willCollide(stack.top(), asteroid)) { // will collide only when top of the stack moves right and current asteroid moves left
                 int top = stack.top();
-                if (abs(i) > abs(top)) {
+                if (abs(asteroid) > abs(top)) {
                     stack.pop();
                     continue;
-                } else if (abs(i) == abs(top)) {
+                } else if (abs(asteroid) == abs(top)) {
                     stack.pop();
                 }
-                destroy = 0;
+                survive = 0;
                 break;
-                
-            } 
-            if (destroy) {
-                stack.push(i);
             }
+            
+            if (survive) stack.push(asteroid);
         }
         
         vector<int> res(stack.size());
@@ -30,7 +28,7 @@ public:
     }
                 
 private:
-    bool hasDiffSign(int i, int j) {
+    bool willCollide(int i, int j) {
         return i > 0 && j < 0;
     }
 };
