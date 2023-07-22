@@ -7,7 +7,6 @@ public:
             pq.push(num);
         }
         
-        int count = 0;
         int res = INT_MIN;
         while (--k >= 1) pq.pop();
         return pq.top();
