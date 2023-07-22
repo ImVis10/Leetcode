@@ -1,7 +1,7 @@
 class Solution {
 public:
     int findKthLargest(vector<int>& nums, int k) {
-        priority_queue<int, vector<int>> pq; // max heap
+        priority_queue<int> pq; // max heap
         
         for (auto& num : nums) {
             pq.push(num);
