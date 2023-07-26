@@ -1,7 +1,7 @@
 class Solution {
 public:
     int minSpeedOnTime(vector<int>& dist, double timeRequired) {
-        // Approach from DISCUSS section
+        // Intuition from DISCUSS section, same as KOKO EATING BANANAS
         // result can be in the range of [1, 10^7]
         // checking for each speed is not optimal
         // so can do Binary Search
@@ -11,7 +11,7 @@ public:
             int mid = low + (high - low) / 2;
             double timeTaken = timeToTravel(dist, mid);
             
-            if (timeTaken <= timeRequired) {
+            if (timeTaken <= timeRequired) { // result can be still lower
                 res = mid;
                 high = mid - 1;
             } else {
