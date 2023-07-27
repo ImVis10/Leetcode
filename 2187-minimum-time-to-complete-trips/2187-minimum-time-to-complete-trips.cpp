@@ -14,7 +14,7 @@ public:
 private:
     bool isTimeTakenMinimum(vector<int>& time, long long mid, int totalTrips) {
         int cnt = 0;
-        for (int i = 0; i < time.size() && cnt < totalTrips; i++) {
+        for (int i = 0; i < time.size(); i++) {
             if (cnt < totalTrips) cnt += mid / time[i];
         }
         return cnt >= totalTrips;
