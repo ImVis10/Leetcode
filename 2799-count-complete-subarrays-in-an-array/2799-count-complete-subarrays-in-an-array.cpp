@@ -8,15 +8,6 @@ public:
         
         int temp = distinct;
         
-//         int start = 0, end = 0;
-        
-//         while (start < end) {
-//             if (set.count(nums[end]) == 0) {
-//                 set.insert(nums[end]);
-//                 distinct -= 1;
-//             }
-//             end++;
-//         }
         int i = 0, j = 0;
         while (j < nums.size()) {
             if (set.count(nums[j]) == 0) {
