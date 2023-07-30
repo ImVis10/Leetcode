@@ -6,26 +6,23 @@ public:
         
         set.clear();
         
-        int temp = distinct;
-        
-        int i = 0, j = 0;
-        while (j < nums.size()) {
-            if (set.count(nums[j]) == 0) {
-                set.insert(nums[j]);
+        int start = 0, end = 0;
+        while (end < nums.size()) {
+            if (set.count(nums[end]) == 0) {
+                set.insert(nums[end]);
                 distinct -= 1;
             }
-            if (j < nums.size() && distinct == 0) {
-                if (j == nums.size() - 1) {
-                    i++;
-                    j = i;
+            if (end < nums.size() && distinct == 0) {
+                res++;
+                if (end == nums.size() - 1) {
+                    start++;
+                    end = start;
+                    distinct = set.size();
                     set.clear();
-                    distinct = temp;
-                    res++;
                     continue;
                 }
-                res++;
             }
-            j++;
+            end++;
         }
         return res;
     }
