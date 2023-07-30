@@ -1,26 +1,27 @@
 class Solution {
 public:
     vector<string> generateParenthesis(int n) {
-        // no. of open parentheses  = n, no. of closing parentheses = n
-        // add open parentheses only when open < n
-        // add closing parentheses only when close < open
+        // #opening paranthesis = n, #closing paranthesis = n
+        // generate open paranthesis as along as open < n
+        // generate close paranthesis as long as close < open
+        
         vector<string> res;
-        backtrack(0, 0, n, "", res);
+        recurse(0, 0, n, "", res);
         return res;
     }
 private:
-    void backtrack(int numOpen, int numClose, int n, string str, vector<string> & res) {
-        if (numOpen == numClose && numClose == n) {
-            res.push_back(str);
+    void recurse(int open, int close, int n, string par, vector<string>& res) {
+        if (open == close && close == n) {
+            res.push_back(par);
             return;
         }
         
-        if (numOpen < n) {
-            backtrack(numOpen + 1, numClose, n, str + '(', res);
+        if (open < n) {
+            recurse(open + 1, close, n, par + '(', res);
         }
         
-        if (numClose < numOpen) {
-            backtrack(numOpen, numClose + 1, n, str + ')', res);
+        if (close < open) {
+            recurse(open, close + 1, n, par + ')', res);
         }
     }
 };
