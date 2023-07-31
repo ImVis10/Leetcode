@@ -15,23 +15,20 @@ public:
         // USING BINARY SEARCH
         
         int n = nums.size();
-        int low = 0, high = n;        
-        while (low < high - 1) {
-            int mid = low + (high - low) / 2;
+        int low = 0, high = n - 1;        
+        while (low < high) {
+            int mid = high - (high - low) / 2;
             int numMissing = numberOfMissingElementsUntil(mid, nums);
             if (numMissing < k) {
                 low = mid;
             } else {
-                high = mid;
+                high = mid - 1;
             }
         }
-        return nums[low] + k - numberOfMissingElementsUntil(low, nums);
+        return nums[0] + k + low;
     }
 private:
     int numberOfMissingElementsUntil(int idx, vector<int>& nums) {
-        if (idx == 0) {
-            return 0;
-        }
         int res = nums[idx] - nums[0] - idx;
         return res;
     }
