@@ -16,17 +16,18 @@ private:
     };
 
     void recurse(int idx, string ph, vector<char>& cur, vector<string>& res) {
-      if (idx == ph.length()) {
-        string s = accumulate(cur.begin(), cur.end(), string{});
-        res.push_back(s);
-        return;
-      }
-
-      int digit = ph[idx] - '0';
-      vector<char> letters = map[digit];
-      for (auto letter : letters) {
-        cur[idx] = letter;
-        recurse(idx + 1, ph, cur, res);
-      }
+        if (idx == ph.length()) {
+          string typedString = accumulate(cur.begin(), cur.end(), string{});
+          res.push_back(typedString);
+          return;
+        }
+        
+        int typedNum = ph[idx] - '0';
+        auto lettersOfNum = map[typedNum];
+        
+        for (auto letter : lettersOfNum) {
+            cur[idx] = letter;
+            recurse(idx + 1, ph, cur, res);
+        }   
     }
 };
