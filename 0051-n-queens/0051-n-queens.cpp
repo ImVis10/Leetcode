@@ -46,7 +46,7 @@ private:
             row++;
             col--;
         }
-        // no need to check in other directions as if a queen is in current col, it'll be the only queen in that col for now, so mo need to move up and down. There won't be any queens present towards the right cols at the moment. So only check towards the left i.e. left, upward left, downward left.
+        // no need to check in other directions as if a queen is in current col, it'll be the only queen in that col for now, so no need to move up and down. There won't be any queens present towards the right cols at the moment. So only check towards the left i.e. left, upward left, downward left.
         return true;
     }
 };
