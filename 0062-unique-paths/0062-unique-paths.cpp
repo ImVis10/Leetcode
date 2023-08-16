@@ -1,7 +1,7 @@
 class Solution {
 public:
     int uniquePaths(int m, int n) {
-        vector<vector<int>> cache(m, vector<int>(n + 1 , -1));
+        vector<vector<int>> cache(m, vector<int>(n, -1));
         return recurse(0, 0, m - 1, n - 1, cache);
     }
 private:
