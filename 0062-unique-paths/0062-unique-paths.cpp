@@ -2,18 +2,18 @@ class Solution {
 public:
     int uniquePaths(int m, int n) {
         vector<vector<int>> cache(m, vector<int>(n + 1 , -1));
-        return recurse(m - 1, n - 1, cache);
+        return recurse(0, 0, m - 1, n - 1, cache);
     }
 private:
-    int recurse(int row, int col, vector<vector<int>>& cache) {
-        if (row == 0 && col == 0) return 1;
-        if (row < 0 || col < 0) return 0;
+    int recurse(int currRow, int currCol, int destRow, int destCol, vector<vector<int>>& cache) {
+        if (currRow == destRow && currCol == destCol) return 1;
+        if (currRow > destRow || currCol  > destCol) return 0;
         
-        if (cache[row][col] != -1) return cache[row][col];
+        if (cache[currRow][currCol] != -1) return cache[currRow][currCol];
         
-        int up = recurse(row - 1, col, cache);
-        int left = recurse(row, col - 1, cache);
+        int down = recurse(currRow + 1, currCol, destRow, destCol, cache);
+        int right = recurse(currRow, currCol + 1, destRow, destCol, cache);
         
-        return cache[row][col] = up + left;
+        return cache[currRow][currCol] = down + right;
     }
 };
