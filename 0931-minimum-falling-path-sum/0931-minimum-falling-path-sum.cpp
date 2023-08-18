@@ -1,21 +1,24 @@
-//Top-down Recursive with memo
 class Solution {
 public:
-    int minFallingPathSumHelper(vector<vector<int>>& matrix, int r, int c, vector<vector<int>>& dp){
-        if(r == 0 and c < matrix[0].size() and c >= 0) return matrix[r][c]; 
-        if(c >= matrix[0].size() or c < 0) return INT_MAX;
-        
-        if(dp[r][c] != INT_MAX) return dp[r][c];
-        return dp[r][c] = matrix[r][c] + min(min(minFallingPathSumHelper(matrix, r-1, c+1, dp), minFallingPathSumHelper(matrix, r-1, c, dp)), minFallingPathSumHelper(matrix, r-1, c-1, dp));
-        
-    }
     int minFallingPathSum(vector<vector<int>>& matrix) {
-        int rows = matrix.size(), cols = matrix[0].size();
-        vector<vector<int>> dp(rows+1, vector<int>(cols+1, INT_MAX));
-        int ans = INT_MAX;
-        for(int c=0; c < cols; c++){
-            ans = min(ans, minFallingPathSumHelper(matrix, rows-1, c, dp));
+        int n = matrix.size();
+        vector<vector<int>> cache(n, vector<int>(n, -101));
+        int minPath = INT_MAX;
+        for (int col = 0; col < n; col++) {
+            minPath = min(minPath, recurse(n - 1, col, matrix, cache));
         }
-        return ans;
+        return minPath;
+    }
+private:
+    int recurse(int row, int col, vector<vector<int>>& grid, vector<vector<int>>& cache) {
+        if (col < 0 || col > grid.size() - 1) return 1e9;
+        if (row == 0) return grid[row][col];
+        if (cache[row][col] != -101) return cache[row][col];
+        
+        int leftDiag = grid[row][col] + recurse(row -1, col - 1, grid, cache);
+        int up = grid[row][col] + recurse(row - 1, col, grid, cache);
+        int rightDiag = grid[row][col] + recurse(row -1, col + 1, grid, cache);
+        
+        return cache[row][col] = min({leftDiag, up, rightDiag});
     }
 };
