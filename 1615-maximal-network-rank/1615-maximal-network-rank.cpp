@@ -17,11 +17,7 @@ public:
         for (int i = 0; i < n; i++) {
             for (int j = i + 1; j < n; j++) {
                 int rank = adj[i].size() + adj[j].size();
-                
-                if (adj[j].find(i) != adj[j].end()) {
-                    rank -= 1;
-                }
-                
+                if (adj[j].find(i) != adj[j].end()) rank -= 1;
                 res = max(rank, res);
             }
         }
