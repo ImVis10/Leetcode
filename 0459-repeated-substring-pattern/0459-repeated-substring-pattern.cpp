@@ -10,7 +10,7 @@ public:
             string repeatedSubStr = "";
             for (int j = 0; j < (len / lenSubStr); j++) {
                 repeatedSubStr += substr;
-                // if (s.substr(0, repeatedSubStr.length()) != repeatedSubStr) break;
+                if (s.substr(0, repeatedSubStr.length()) != repeatedSubStr) break;
             }
             if (s == repeatedSubStr && len != lenSubStr) return true;
         }
