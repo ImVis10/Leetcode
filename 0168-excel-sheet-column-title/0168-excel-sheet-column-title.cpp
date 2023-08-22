@@ -1,14 +1,13 @@
 class Solution {
 public:
     string convertToTitle(int columnNumber) {
-        string res;
         int n = columnNumber;
-        while (n > 0) {
-            char ch = 'A' + --n % 26; // --n as 0-> A, 25->Z
-            res = ch + res;
+        string res = "";
+        while (n) {
+            res += 'A' + (--n % 26);
             n /= 26;
         }
-        
+        reverse(res.begin(), res.end());
         return res;
     }
 };
