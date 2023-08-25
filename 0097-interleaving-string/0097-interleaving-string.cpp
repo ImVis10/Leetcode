@@ -17,6 +17,6 @@ private:
         
         if (idx2 < s2.length() and s2[idx2] == s3[idx1 + idx2] and recurse(idx1, s1, idx2 + 1, s2, s3, cache)) return true;
         
-        return cache[idx1][idx2] = 0;
+        return cache[idx1][idx2] = 0; // if neither satisfies
     }
 };
