@@ -5,7 +5,7 @@ public:
             return a[1] < b[1];
         });
         
-        int res = 1; // minimum lenght of the chain
+        int res = 1; // minimum length of the chain
         
         int end = pairs[0][1];
         
