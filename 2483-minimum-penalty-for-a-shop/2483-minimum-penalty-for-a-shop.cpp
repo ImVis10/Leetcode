@@ -33,16 +33,16 @@ public:
         vector<int> prefixN(n + 1, 0);
         vector<int> suffixY(n + 1, 0);
         
-        for (int i = 1; i <= n; i++) { // close from 1
+        for (int i = 1; i <= n; i++) { // shop is open
             prefixN[i] = prefixN[i - 1];
-            if (customers[i - 1] == 'N') { // shop is open, but no customers visit
+            if (customers[i - 1] == 'N') { // but no customers visit
                 prefixN[i] += 1;
             }
         }
         
-        for (int i = n - 1; i >= 0; i--) { // close from n
+        for (int i = n - 1; i >= 0; i--) { // shop is closed
             suffixY[i] = suffixY[i + 1];
-            if (customers[i] == 'Y') { // shop is closed, but customers visit
+            if (customers[i] == 'Y') { // but customers visit
                 suffixY[i] += 1;
             }
         }
