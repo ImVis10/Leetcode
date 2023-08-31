@@ -21,6 +21,6 @@ public:
             canReachEnd = max(canReachEnd, area[i]);
         }
         
-        return res + (end < n);
+        return res;
     }
 };
