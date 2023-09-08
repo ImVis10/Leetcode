@@ -14,7 +14,7 @@ private:
         }
         for (int i = idx; i < s.length(); i++) {
             if (isPalin(s, idx, i)) {
-                palin.push_back(s.substr(idx, i - idx + 1)); // cpp substr is not the same as java subString(). In cpp, first parameter is the start position and seocnd parameter is not the end position but the length of the substring.
+                palin.push_back(s.substr(idx, i - idx + 1)); // cpp substr is not the same as java subString(). In cpp, first parameter is the start position and second parameter is not the end position but the length of the substring.
                 recurse(i + 1, s, palin, res);
                 palin.pop_back();
             }
