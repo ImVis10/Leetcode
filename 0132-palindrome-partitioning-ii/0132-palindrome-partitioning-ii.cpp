@@ -3,7 +3,7 @@ public:
     int minCut(string s) {        
         vector<int> cache(s.length(), -1);
         
-        // precompute palindrome check
+        // precompute palindrome check.. doing this because of MLE and TLE
         vector<vector<bool>> isPalindrome(s.length(), vector<bool>(s.length(), false));
         precomputePalindromeCheck(s, isPalindrome);
         
