@@ -4,7 +4,7 @@ public:
         vector<int> cache(s.length(), -1);
         
         // precompute palindrome check.. doing this because of MLE and TLE
-        vector<vector<bool>> isPalindrome(s.length(), vector<bool>(s.length(), false));
+        vector<vector<bool>> isPalindrome(s.length(), vector<bool>(s.length(), false)); // 2d array.. 1st index denotes start of the substring, 2nd end of the substring
         precomputePalindromeCheck(s, isPalindrome);
         
         int minCuts = recurse(0, s, cache, isPalindrome);
@@ -45,7 +45,7 @@ private:
             isPalindrome[i][i + 1] = (s[i] == s[i + 1]);
         }
 
-        // Check for longer palindromes
+        // Check for longer palindromes using the results from shorter strings
         for (int len = 3; len <= n; len++) {
             for (int i = 0; i <= n - len; i++) {
                 int j = i + len - 1;
