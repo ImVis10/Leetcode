@@ -10,24 +10,24 @@
  * };
  */
 class Solution {
-    int res = 0;
 public:
     int goodNodes(TreeNode* root) {
-        if (root == NULL) return 0;
-        dfs(root, root->val);
-        return res;
+        return dfs(root, root->val);
     }
     
 private:
-    void dfs(TreeNode* node, int currPathMax) {
-        if (!node) return;
+    int dfs(TreeNode* node, int currPathMax) {
+        if (!node) return 0;
         
+        int cnt = 0;
         if (node->val >= currPathMax) {
             currPathMax = node->val;
-            res++;
+            cnt = 1;
         }
         
-        dfs(node->left, currPathMax);
-        dfs(node->right, currPathMax);
+        cnt += dfs(node->left, currPathMax);
+        cnt += dfs(node->right, currPathMax);
+        
+        return cnt;
     }
 };
