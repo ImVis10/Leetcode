@@ -10,23 +10,22 @@
  * };
  */
 class Solution {
-    TreeNode* prev;
 public:
     bool isValidBST(TreeNode* root) {
-        return inorder(root);
+        TreeNode* prev = nullptr; // pointer to keep track of the previous node in in-order traversal
+        return inorder(root, prev);
     }
+
 private:
-    bool inorder(TreeNode* node) {
-        if (node) {
-            if (!inorder(node->left)) {
-                return false;
-            }
-            if (prev && node->val <= prev->val) {
-                return false;
-            }
-            prev = node;
-            return inorder(node->right);
-        }
-        return true;
+    bool inorder(TreeNode* node, TreeNode*& prev) {
+        if (!node) return true;
+
+        if (!inorder(node->left, prev)) return false;
+
+        if (prev && node->val <= prev->val) return false;
+
+        prev = node;
+
+        return inorder(node->right, prev);
     }
 };
