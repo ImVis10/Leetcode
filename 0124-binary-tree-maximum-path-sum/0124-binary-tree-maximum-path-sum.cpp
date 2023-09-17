@@ -23,7 +23,7 @@ private:
         int left = max(dfs(node->left, maxPathSum), 0); // 0 coz the node->left can be -ve and no need to add to the path as it reduces the sum
         int right = max(dfs(node->right, maxPathSum), 0); // 0 coz the node->left can be -ve and no need to add to the path as it reduces the sum
         
-        int currPathSum = node->val + left + right;
+        int currPathSum = node->val + left + right; // includes splitting
         maxPathSum = max(maxPathSum, currPathSum);
         
         return node->val + max(left, right); // without splitting
