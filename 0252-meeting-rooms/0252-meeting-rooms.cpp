@@ -1,20 +1,11 @@
 class Solution {
 public:
     bool canAttendMeetings(vector<vector<int>>& intervals) {
-        sort(intervals.begin(), intervals.end(), [](auto const &a, auto const &b){
-           return a[0] < b[0]; 
-        });
+        sort(intervals.begin(), intervals.end());
         
-        int currStart, currEnd, prevEnd = -1;
-        
-        for (auto interval : intervals) {
-            currStart = interval[0];
-            currEnd = interval[1];
-            
-            if (currStart < prevEnd) {
-                return false;
-            }
-            prevEnd = currEnd;
+        for (int i = 1; i < intervals.size(); i++) {
+            if (intervals[i][0] >= intervals[i - 1][1]) continue;
+            else return false;
         }
         return true;
     }
