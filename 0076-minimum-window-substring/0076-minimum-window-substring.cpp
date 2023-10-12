@@ -21,9 +21,8 @@ public:
                     minWindow = j - i + 1;
                     windowStartsAt = i;
                 }
-                // the next 2 lines of code are to find the minimize the window i.e., to shrink the window
-                // freqT[s[i]]++;
-                if (++freqT[s[i++]] > 0) charsFromT--; // count of chars not from t would be negative, if it's greater than 0, it means that the characters are from t, so we remove 1 from them, as  
+                // the next lines of code is to minimize the window i.e., to shrink the window
+                if (++freqT[s[i++]] > 0) charsFromT--; // count of chars not from t would be negative, if it's greater than 0, it means that the characters are from t, so we remove 1 from them, as we are incrementing the count.Wwe don't want to count it twice. 
             }
         }
         return minWindow == INT_MAX ? "" : s.substr(windowStartsAt, minWindow);
