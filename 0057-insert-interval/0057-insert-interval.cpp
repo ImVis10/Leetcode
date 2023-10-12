@@ -2,11 +2,13 @@ class Solution {
 public:
     vector<vector<int>> insert(vector<vector<int>>& intervals, vector<int>& newInterval) {
         int n = intervals.size();
-        vector<vector<int>> res;
+        if (n == 0) return {newInterval};
         
         intervals.push_back(newInterval);
         
         sort(intervals.begin(), intervals.end());
+        
+        vector<vector<int>> res;
         
         // merge overlapping intervals
         for (int i = 0; i < n + 1; i++) { // < n + 1 as we added the newIntervals into our intervals, so its size increases
