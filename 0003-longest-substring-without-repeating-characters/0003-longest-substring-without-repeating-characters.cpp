@@ -8,7 +8,7 @@ public:
         
         for (int i = 0, j = 0; j < n; j++) {
             map[s[j]]++;
-            while (map[s[j]] > 1) {
+            while (map[s[j]] > 1) { // move the window to the right, as we move decrement the count of the chars in the window
                 --map[s[i++]];
             }
             res = max(res, j - i + 1);
