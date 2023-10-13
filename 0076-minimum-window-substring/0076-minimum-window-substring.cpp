@@ -22,7 +22,7 @@ public:
                     windowStartsAt = i;
                 }
                 // the next lines of code is to minimize the window i.e., to shrink the window
-                if (++freqT[s[i++]] > 0) charsFromT--; // count of chars not from t would be negative, if it's greater than 0, it means that the characters are from t, so we remove 1 from them, as we are incrementing the count.Wwe don't want to count it twice. 
+                if (++freqT[s[i++]] > 0) charsFromT--; // count of chars not from t would be negative, if it's greater than 0, it means that the characters are from t, so we remove 1 from them, as we are incrementing the count.We don't want to count it twice. 
             }
         }
         return minWindow == INT_MAX ? "" : s.substr(windowStartsAt, minWindow);
