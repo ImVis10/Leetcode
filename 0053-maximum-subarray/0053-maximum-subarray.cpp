@@ -1,14 +1,11 @@
 class Solution {
 public:
     int maxSubArray(vector<int>& nums) {
-        // Kadane's algorithm
-        // Don't move forward with negative sum coz its better to start with new one as our objective is to maximize the sum of the subarray 
-        int maxSum = INT_MIN;
-        int sum = 0;
+        int sum = 0, maxSum = INT_MIN;
         
-        for (int i = 0; i < nums.size(); i++) {
-            sum += nums[i];
-            maxSum = max(sum, maxSum);
+        for (int num : nums) {
+            sum += num;
+            maxSum = max(maxSum, sum);
             if (sum < 0) {
                 sum = 0;
             }
