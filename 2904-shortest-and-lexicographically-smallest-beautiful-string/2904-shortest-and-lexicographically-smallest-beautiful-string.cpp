@@ -8,7 +8,6 @@ public:
         
         for (i = 0, j = 0; j < n; j++) {
             if (s[j] == '1') cnt++;
-            
             while (cnt == k) {
                 if (j - i + 1 < resLen || (j - i + 1 == resLen && s.substr(i, resLen) < res)) {
                     resLen = j - i + 1;
