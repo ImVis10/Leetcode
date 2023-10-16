@@ -2,19 +2,17 @@ class Solution {
 public:
     string shortestBeautifulSubstring(string s, int k) {
         string res = "";
-        int n = s.length(), cnt = 0;
-        int resLen = INT_MAX;
-        int i = 0, j = 0;
+        int n = s.length();
+        int numOnes = 0, resLen = INT_MAX;
         
-        for (i = 0, j = 0; j < n; j++) {
-            if (s[j] == '1') cnt++;
-            while (cnt == k) {
-                if (j - i + 1 < resLen || (j - i + 1 == resLen && s.substr(i, resLen) < res)) {
-                    resLen = j - i + 1;
-                    res = s.substr(i, resLen);
+        for (int start = 0, end = 0; end < n; end++) {
+            if (s[end] == '1') numOnes++;
+            while (numOnes == k) {
+                if (end - start + 1 < resLen || (resLen == end - start + 1 && s.substr(start, resLen) < res)) {
+                    resLen = end - start + 1;
+                    res = s.substr(start, resLen);
                 }
-                if (s[i] == '1') cnt--;
-                i++;
+                if (s[start++] == '1') numOnes--;
             }
         }
         return res;
