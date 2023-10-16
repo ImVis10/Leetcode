@@ -1,34 +1,35 @@
 class Solution {
 public:
     vector<vector<int>> threeSum(vector<int>& nums) {
-        // same as twosum, here the target is zero and there can be more than one answer, we need to find all the unique triplets that sum to 0. Solution shouldn't contain duplicate triplets.
-        int target = 0;
+        int n = nums.size(), target = 0;
         vector<vector<int>> res;
+        
         sort(nums.begin(), nums.end());
-        for (int i = 0; i < nums.size(); i++) {
-            if (!(nums[i] > 0)) { // as the array is sorted, remaining values can't be summed to 0.
-                if (i == 0 || nums[i] != nums[i - 1]) { // inequality check to eliminate duplicates
+        
+        for (int i = 0; i < n; i++) {
+            if (nums[i] <= 0) {
+                if (i == 0 || nums[i] != nums[i - 1]) {
                     twoSum(nums, i, res, target);
-                }
+                }                
             }
+
         }
         return res;
-        
     }
-    
-    void twoSum(vector<int> &nums, int i, vector<vector<int>> &res, int target) {
-        int left = i + 1, right = nums.size() - 1;
-        while (left < right) {
-            int sum = nums[left] + nums[right] + nums[i];
+private:
+    void twoSum(vector<int>& nums, int idx, vector<vector<int>>& res, int target) {
+        int low = idx + 1, high = nums.size() - 1;
+        while (low < high) {
+            int sum = nums[idx] + nums[low] + nums[high];
             if (sum == target) {
-                res.push_back({nums[i], nums[left++], nums[right--]});
-                while (left < right && nums[right] == nums[right + 1]) {
-                    right--;
+                res.push_back({nums[idx], nums[low++], nums[high--]}); // low++ and high-- as we gotta keep moving as there can be multiple answers
+                while (low < high && nums[high] == nums[high + 1]) {
+                    high--;
                 }
             } else if (sum < target) {
-                left++;
+                low++;
             } else {
-                right--;
+                high--;
             }
         }
     }
