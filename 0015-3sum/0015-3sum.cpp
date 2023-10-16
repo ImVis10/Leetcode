@@ -23,7 +23,7 @@ private:
             int sum = nums[idx] + nums[low] + nums[high];
             if (sum == target) {
                 res.push_back({nums[idx], nums[low++], nums[high--]}); // low++ and high-- as we gotta keep moving as there can be multiple answers
-                while (low < high && nums[high] == nums[high + 1]) {
+                while (low < high && nums[high] == nums[high + 1]) { // if we encounter the same number again with the other numbers also being the same
                     high--;
                 }
             } else if (sum < target) {
