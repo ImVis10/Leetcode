@@ -23,25 +23,21 @@ public:
         int n = nums.size();
         unordered_map<int, int> mp;
         
-        vector<vector<int>> freq(n + 1);
+        vector<vector<int>> buckets(n + 1);
         
         for (int num : nums) mp[num]++;
         
         for (auto& [num, cnt] : mp) {
-            freq[cnt].push_back(num);
+            buckets[cnt].push_back(num);
         }
         
         vector<int> res;
         
-        for (int i = freq.size() - 1; i > 0; i--) {
-            if (k == 0) return res;
-            if (freq[i].empty()) continue;
-            for (int num : freq[i]) {
-                if (k) {
-                    res.push_back(num);
-                    k--;
-                }
-
+        for (int i = buckets.size() - 1; i > 0 && k > 0; i--) {
+            for (int num : buckets[i]) {
+                if (k == 0) break;
+                res.push_back(num);
+                k--;
             }
         }
         return res;
