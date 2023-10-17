@@ -1,24 +1,18 @@
 class Solution {
 public:
     int longestConsecutive(vector<int>& nums) {
-        set<int> set;
+        unordered_set<int> st(nums.begin(), nums.end());
+        int res = 0, currSeqLen = 0;
         for (int num : nums) {
-            set.insert(num);
-        }
-        
-        int res = 0;
-        
-        for (int num : nums) {
-            // check if 'num - 1' is present in the set
-            if (!set.count(num - 1)) {
-                int currNum = num;
-                int currSeqLength = 1;
-            
-                while (set.count(currNum + 1)) { // while the consecutive elements are present
-                    currNum += 1;
-                    currSeqLength += 1;
+            if (!(st.find(num - 1) != st.end())) {
+                int currSeqStart = num;
+                currSeqLen = 1;
+                
+                while (st.find(currSeqStart + 1) != st.end()) {
+                    currSeqStart++;
+                    currSeqLen++;
                 }
-                res = max(res, currSeqLength);
+                res = max(res, currSeqLen);
             }
         }
         return res;
