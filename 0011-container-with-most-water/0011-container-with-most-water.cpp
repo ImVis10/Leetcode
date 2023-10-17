@@ -11,7 +11,6 @@ public:
             int h = min(height[left], height[right]);
             int w = right - left;
             maxArea = max(maxArea, h * w);
-            cout << maxArea << endl;
             if (height[left] < height[right]) left++;
             else right--;
         }
