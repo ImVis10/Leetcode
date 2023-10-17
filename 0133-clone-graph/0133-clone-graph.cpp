@@ -20,10 +20,19 @@ public:
 */
 
 class Solution {
+    unordered_map<Node*, Node*> graph;
 public:
     Node* cloneGraph(Node* node) {
         if (!node) return NULL;
-        return bfs(node);
+        // return bfs(node);
+        /******DFS******/
+        if (graph.find(node) == graph.end()) {
+            graph[node] = new Node(node->val, vector<Node*>());
+            for (auto neigh : node->neighbors) {
+                graph[node]->neighbors.push_back(cloneGraph(neigh));
+            }
+        }
+        return graph[node];
     }
 private:
     Node* bfs(Node* node) {
