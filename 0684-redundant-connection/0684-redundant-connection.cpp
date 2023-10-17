@@ -5,7 +5,7 @@ public:
         
         vector<vector<int>> graph(n + 1);
         
-        for (auto& edge : edges) {
+        for (auto& edge : edges) { // TC: O(n^2), as we do DFS from every node
             int u = edge[0];
             int v = edge[1];
             vector<bool> visited(n + 1);
