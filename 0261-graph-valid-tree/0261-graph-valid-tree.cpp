@@ -14,20 +14,20 @@ public:
         
         unordered_set<int> visited;
         
-        if (!dfs(0, -1, graph, visited)) return false;
+        if (dfs(0, -1, graph, visited)) return false; // cycle exists, so not a tree
         
         return visited.size() == n; // valid tree only when the graph is connected. For a disconnected graph all the nodes in the graph won't be visited.
     }
     
 private:
-    bool dfs(int node, int parent, unordered_map<int, unordered_set<int>>& graph, unordered_set<int>& visited) {
-        if (visited.count(node)) return false;
+    bool dfs(int node, int parent, unordered_map<int, unordered_set<int>>& graph, unordered_set<int>& visited) { // checks for the cycle, returns true if present, else returns false
+        if (visited.find(node) != visited.end()) return true;
         
         visited.insert(node);
         
         for (int neighbor : graph[node]) {
-            if (neighbor != parent && !dfs(neighbor, node, graph, visited)) return false;
+            if (neighbor != parent && dfs(neighbor, node, graph, visited)) return true;
         }
-        return true;
+        return false;
     }
 };
