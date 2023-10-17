@@ -9,7 +9,8 @@ public:
             int u = edge[0];
             int v = edge[1];
             vector<bool> visited(n + 1);
-            if (dfs(u, v, graph, visited)) { // Cycle exists and edge is causing the cycle
+            // Check if there is a path from u to v with considering the edge(u, v)
+            if (dfs(u, v, graph, visited)) { // Cycle exists and edge(u, v) is causing the cycle
                 return edge;
             }
             graph[u].push_back(v);
