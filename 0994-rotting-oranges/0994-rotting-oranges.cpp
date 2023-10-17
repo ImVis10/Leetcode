@@ -23,7 +23,7 @@ private:
         int time = 0;
         while (!q.empty() && fresh) {
             int sz = q.size();
-            for (int i = 0; i < sz; i++) {
+            for (int i = 0; i < sz; i++) { //  for every minute check for oranges that get sick
                 auto cell = q.front();
                 q.pop();
                 for (auto& dir : dirs) {
