@@ -21,7 +21,9 @@ private:
     void dfs(TreeNode* root, int level, vector<int>& res) {
         if (!root) return;
         
-        if (level == res.size()) res.push_back(root->val);
+        if (level == res.size()) { // to ensure for each level, we only add the first node we encounter 
+            res.push_back(root->val);
+        }
         
         dfs(root->right, level + 1, res);
         dfs(root->left, level + 1, res);
