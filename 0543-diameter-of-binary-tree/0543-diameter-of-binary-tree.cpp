@@ -11,7 +11,7 @@
  */
 class Solution {
 public:
-    int diameterOfBinaryTree(TreeNode* root) {
+    int diameterOfBinaryTree(TreeNode* root) { // diameter at a node would be the sum of its left subtree's height and right subtree's height
         int diameter = 0;
         height(root, diameter);
         return diameter;
