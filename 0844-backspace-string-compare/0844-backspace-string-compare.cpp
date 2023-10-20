@@ -6,18 +6,16 @@ public:
 private:
     string getStringAfterBackspace(string s) {
         stack<char> stk;
-        string res = "";
         for (auto& ch : s) {
             if (!stk.empty() && ch == '#') stk.pop();
-            else if (stk.empty() && ch == '#') continue;
-            else stk.push(ch);
+            else if (ch != '#') stk.push(ch);
         }
         
+        string res = "";
         while (!stk.empty()) {
             res += stk.top();
             stk.pop();
         }
-        cout << res << endl;
         return res;
     }
 };
