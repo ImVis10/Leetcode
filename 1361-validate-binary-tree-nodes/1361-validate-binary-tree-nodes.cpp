@@ -18,20 +18,19 @@ public:
             }
         }
         
-        bool hasCycle = dfs(root, leftChild, rightChild, visited);
-        
-        for (bool vis : visited) {
-            if (vis) n--;
-        }
-        return numRoots == 1 && !hasCycle && n == 0;
+        int numVisited = 0;
+        bool hasCycle = dfs(root, leftChild, rightChild, visited, numVisited);
+
+        return numRoots == 1 && !hasCycle && numVisited == n;
     }
 private:
-    bool dfs(int node, vector<int>& leftChild, vector<int>& rightChild, vector<bool>& visited) { // checks for existence of cycle
+    bool dfs(int node, vector<int>& leftChild, vector<int>& rightChild, vector<bool>& visited, int& numVisited) { // checks for existence of cycle
         if (node == -1) return false;
         if (visited[node]) return true;
         
         visited[node] = true;
+        numVisited++;
         
-        return dfs(leftChild[node], leftChild, rightChild, visited) || dfs(rightChild[node], leftChild, rightChild, visited);
+        return dfs(leftChild[node], leftChild, rightChild, visited, numVisited) || dfs(rightChild[node], leftChild, rightChild, visited, numVisited);
     }
 };
