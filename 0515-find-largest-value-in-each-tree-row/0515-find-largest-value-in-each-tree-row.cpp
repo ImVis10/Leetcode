@@ -20,25 +20,22 @@ private:
         
         queue<TreeNode*> q;
         q.push(root);
-        int level = -1;
         
         vector<int> res;
         
         while (!q.empty()) {
-            int prevLevel = level;
-            level++;
             int levelSize = q.size();
             int levelMax = INT_MIN;
             for (int i = 0; i < levelSize; i++) {
                 auto currNode = q.front();
                 q.pop();
+                
+                levelMax = max(currNode->val, levelMax);
+                
                 if (currNode->left) q.push(currNode->left);
                 if (currNode->right) q.push(currNode->right);
-                levelMax = max(currNode->val, levelMax);
-                if (prevLevel != level) res.push_back(levelMax);
-                else res.back() = levelMax;
-                prevLevel = level;
             }
+            res.push_back(levelMax);
         }
         return res;
     }
