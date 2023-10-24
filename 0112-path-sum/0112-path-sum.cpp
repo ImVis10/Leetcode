@@ -13,8 +13,6 @@ class Solution {
 public:
     bool hasPathSum(TreeNode* root, int targetSum) {
         return dfs(root, 0, targetSum);
-        
-    
     }
 private:
     int dfs(TreeNode* root, int sum, int target) {
