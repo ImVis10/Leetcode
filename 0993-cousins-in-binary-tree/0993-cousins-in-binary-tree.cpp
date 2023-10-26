@@ -34,6 +34,6 @@ private:
         }
         
         dfs(root->left, x, y, depth + 1, root->val);
-        dfs(root->right,x,y, depth + 1, root->val);
+        dfs(root->right,x, y, depth + 1, root->val);
     }
 };
