@@ -1,8 +1,6 @@
 class Solution {
 public:
     vector<string> buildArray(vector<int>& target, int n) {
-        stack<int> st;
-        
         int len = target.size();
         int idx = 0;
         
@@ -10,13 +8,9 @@ public:
         
         for (int num = 1; num <= n; num++) {
             if (idx == len) break;
-            if(target[idx] == num) {
-                res.push_back("Push");
-                idx++;
-            } else {
-                res.push_back("Push");
-                res.push_back("Pop");
-            }
+            res.push_back("Push");
+            if(target[idx] == num) idx++;
+            else res.push_back("Pop");
         }
         return res;
     }
