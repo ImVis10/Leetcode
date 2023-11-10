@@ -14,11 +14,16 @@ public:
         
         vector<int> res;
         
+        int startDfsFrom;
+        
         for (auto& [k, v] : graph) {
-            if (v.size() == 1 && !visited[k]) {
-                dfs(k, graph, visited, n, res);
+            if (v.size() == 1) {
+                startDfsFrom = k;
+                break;
             }
         }
+        
+        dfs(startDfsFrom, graph, visited, n, res);
         return res;
     }
 private:
@@ -29,8 +34,8 @@ private:
         
         res.push_back(num);
         
-        for (int p : graph[num]) {
-            if (!visited[p]) dfs(p, graph, visited, n, res);
+        for (int node : graph[num]) {
+            if (!visited[node]) dfs(node, graph, visited, n, res);
         }
     }
 };
