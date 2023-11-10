@@ -15,16 +15,7 @@ public:
         vector<int> res;
         
         for (auto& [k, v] : graph) {
-            cout << "key: " << k << " ";
-            for (auto& num : v) {
-                cout << "values: " << num << " ";
-            }
-            cout << endl;
-        }
-        
-        for (auto& [k, v] : graph) {
             if (v.size() == 1 && !visited[k]) {
-                // cout << "dfs started from: " << v[0] << endl;
                 dfs(k, graph, visited, n, res);
             }
         }
@@ -39,7 +30,7 @@ private:
         res.push_back(num);
         
         for (int p : graph[num]) {
-            dfs(p, graph, visited, n, res);
+            if (!visited[p]) dfs(p, graph, visited, n, res);
         }
     }
 };
