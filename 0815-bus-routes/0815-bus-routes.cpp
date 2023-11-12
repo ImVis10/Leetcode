@@ -22,7 +22,6 @@ public:
         
         while (!q.empty()) {
             int sz = q.size();
-            
             while (sz--) {
                 int stop = q.front();
                 q.pop();
