@@ -9,9 +9,7 @@ public:
         
         for (int i = 1; i < n; i++) {
             if (abs(arr[i] - arr[i - 1]) <= 1) continue;
-            else {
-                arr[i] = 1 + arr[i - 1];
-            }
+            else arr[i] = 1 + arr[i - 1];
         }
         return arr[n - 1];
     }
