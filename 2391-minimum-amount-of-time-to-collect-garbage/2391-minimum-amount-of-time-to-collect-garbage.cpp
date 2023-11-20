@@ -3,23 +3,27 @@ public:
     int garbageCollection(vector<string>& garbage, vector<int>& travel) {
         int n = garbage.size();
         
-        unordered_map<char, int> truckTravelsTill;
+        unordered_map<char, int> lastHouseForGarbage;
+        
+        unordered_map<char, int> totalGarbage;
         
         for (int i = 0; i < n; i++) {
-            if (garbage[i].find('M') != string::npos) truckTravelsTill['M'] = i;
-            if (garbage[i].find('G') != string::npos) truckTravelsTill['G'] = i;
-            if (garbage[i].find('P') != string::npos) truckTravelsTill['P'] = i;
+            for (char ch : garbage[i]) {
+                lastHouseForGarbage[ch] = i;
+                totalGarbage[ch]++;
+            }
+        }
+        
+        vector<int> timeToTravelTill(n);
+        
+        for (int i = 1; i < n; i++) {
+            timeToTravelTill[i] = timeToTravelTill[i - 1] + travel[i - 1];
         }
         
         int time = 0;
         
-        for (auto& [k, v] : truckTravelsTill) {
-            for (int i = 0; i <= v; i++) {
-                for (char ch : garbage[i]) {
-                    if (ch == k) time++;
-                }
-                if (i != v) time += travel[i];
-            }
+        for (auto& [garbageType, lastHouse] : lastHouseForGarbage) {
+            time += totalGarbage[garbageType] + timeToTravelTill[lastHouse];
         }
         return time;
     }
