@@ -11,10 +11,6 @@ public:
             if (garbage[i].find('P') != string::npos) truckTravelsTill['P'] = i;
         }
         
-        for (auto& [k, v] : truckTravelsTill) {
-            cout << k << "  " << v << endl;
-        }
-        
         int time = 0;
         
         for (auto& [k, v] : truckTravelsTill) {
