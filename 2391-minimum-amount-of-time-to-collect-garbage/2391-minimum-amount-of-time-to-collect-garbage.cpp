@@ -18,18 +18,13 @@ public:
         int time = 0;
         
         for (auto& [k, v] : truckTravelsTill) {
-            cout << time << endl;
             for (int i = 0; i <= v; i++) {
                 for (char ch : garbage[i]) {
-                    if (ch == k)  {
-                        time++;
-                    }
+                    if (ch == k) time++;
                 }
                 if (i != v) time += travel[i];
-                // cout << time << endl;
             }
         }
-        cout << time << endl;
         return time;
     }
 };
