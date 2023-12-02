@@ -1,9 +1,23 @@
 class Solution {
 public:
     bool arrayStringsAreEqual(vector<string>& word1, vector<string>& word2) {
-        string s1 = accumulate(word1.begin(), word1.end(), string(""));
-        string s2 = accumulate(word2.begin(), word2.end(), string(""));
+        int i = 0, j = 0;
         
-        return s1 == s2;
+        int w1 = 0, w2 = 0;
+        
+        while (i < word1.size() && j < word2.size()) {
+            if (word1[i][w1] != word2[j][w2]) return false;
+        
+            if (++w1 == word1[i].size()) {
+                i++;
+                w1 = 0;
+            }
+
+            if (++w2 == word2[j].size()) {
+                j++;
+                w2 = 0;
+            }
+        }
+        return i == word1.size() && j == word2.size();
     }
 };
