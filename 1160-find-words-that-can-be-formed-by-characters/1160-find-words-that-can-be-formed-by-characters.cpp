@@ -9,18 +9,18 @@ public:
         
         for (string word : words) {
             unordered_map<char, int> mp2;
+            bool wordForm = true;
+            
             for (char ch : word) {
                 mp2[ch]++;
+                if (mp2[ch] > mp1[ch]) {
+                    wordForm = false;
+                    break;
+                }
             }
             
-            int cnt = 0;
+            if (wordForm) res += word.size();
             
-            for (auto& [k, v] : mp2) {
-                if (mp1.find(k) == mp1.end()) break;
-                else if (mp1[k] >= mp2[k]) cnt++;
-            }
-            
-            if (cnt == mp2.size()) res += word.size();
         }
         return res;
     }
