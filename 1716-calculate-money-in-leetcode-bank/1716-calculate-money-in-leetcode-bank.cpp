@@ -1,21 +1,22 @@
 class Solution {
 public:
     int totalMoney(int n) {
-        if (n <= 7) return n * (n + 1) / 2;
+        int completeWeeks = n / 7;
+        int remainingDays = n % 7;
         
-        int q = n / 7, rem = n % 7;
+        // for each complete week the sum would be in arithematic progression
+        // week 1 - 28, week 2 - 35, week 3 - 42
+        // so sum for total # weeks can be calculated using the formula of sum of n terms in a arithematic progression
+        // n / 2 (first term + nth term)
+        // n = completeWeeks, first term = 28, last term => tn = a + (n - 1) * d
         
-        int res = 0, sum = 28, temp = q;;
+        int sumAfterCompleteWeeks = (completeWeeks) * (28 + (28 + (completeWeeks - 1) * 7)) / 2;
         
-        while (temp--) {
-            res += sum;
-            sum += 7;
-        }
-        // cout << res;
-        int start = q + 1, end = q + rem;
-        // cout << start << " " << end;
-        for (int num = start; num <= end; num++) res += num;
+        cout << sumAfterCompleteWeeks;
         
-        return res;
+        int startDay = completeWeeks + 1;
+        int remainingSum = remainingDays * (startDay + (startDay + (remainingDays - 1) * 1)) / 2;
+        
+        return sumAfterCompleteWeeks + remainingSum;
     }
 };
