@@ -19,12 +19,16 @@ public:
 private:
     void inorder(TreeNode* root, int& k, int& res) {
         if (!root) return;
+        
         inorder(root->left, k, res);
-        k--;
+        
+        k -= 1;
+        
         if (k == 0) {
             res = root->val;
             return;
         }
+        
         inorder(root->right, k, res);
     }
 };
