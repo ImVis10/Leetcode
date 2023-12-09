@@ -18,13 +18,16 @@ private:
     int dfs(TreeNode* root, int currPathMax) { // node should not be less than current path maximum to be considered as a good node
         if (!root) return 0;
         
-        if (root->val < currPathMax) { // bad node
-            return dfs(root->left, currPathMax) + dfs(root->right, currPathMax);
-        } else { // good node
-            currPathMax = root->val;
-            return 1 + dfs(root->left, currPathMax) + dfs(root->right, currPathMax);
-        }
-        return 0;
+        int goodNode = 0;
         
+        if (root->val >= currPathMax) { // good node
+            goodNode = 1;
+            currPathMax = root->val;
+        }
+        
+        goodNode += dfs(root->left, currPathMax);
+        goodNode += dfs(root->right, currPathMax);
+        
+        return goodNode;
     }
 };
