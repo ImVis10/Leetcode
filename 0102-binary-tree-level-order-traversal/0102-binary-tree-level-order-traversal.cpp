@@ -12,15 +12,12 @@
 class Solution {
 public:
     vector<vector<int>> levelOrder(TreeNode* root) {
-        return bfs(root);
-    }
-private:
-    vector<vector<int>> bfs(TreeNode* root) {
-        if (root == NULL) return {};
+        vector<vector<int>> res;
+        if (!root) return res;
+        
         queue<TreeNode*> q;
         q.push(root);
         
-        vector<vector<int>> levelOrder;
         while (!q.empty()) {
             int levelSize = q.size();
             vector<int> level;
@@ -31,8 +28,8 @@ private:
                 if (node->left) q.push(node->left);
                 if (node->right) q.push(node->right);
             }
-            levelOrder.push_back(level);
+            res.push_back(level);
         }
-        return levelOrder;
+        return res;
     }
 };
