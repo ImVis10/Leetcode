@@ -12,22 +12,17 @@
 class Solution {
 public:
     vector<int> rightSideView(TreeNode* root) {
-        int level = 0;
         vector<int> res;
-        dfs(root, level, res);
+        dfs(root, 0, res);
         return res;
     }
 private:
     void dfs(TreeNode* root, int level, vector<int>& res) {
         if (!root) return;
         
-        if (level == res.size()) { // to ensure for each level, we only add the first node we encounter 
-            res.push_back(root->val);
-        }
+        if (res.size() == level) res.push_back(root->val);
         
         dfs(root->right, level + 1, res);
         dfs(root->left, level + 1, res);
     }
-    
-    
 };
