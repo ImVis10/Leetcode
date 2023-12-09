@@ -12,15 +12,15 @@
 class Solution {
 public:
     bool isSubtree(TreeNode* root, TreeNode* subRoot) {
+        // to check if left subtree or right subtree equals to subroot
         if (!root) return false;
         if (isSameTree(root, subRoot)) return true;
-        
-        return isSubtree(root->left, subRoot) || isSubtree(root->right, subRoot);
+        return isSubtree(root->left, subRoot) or isSubtree(root->right, subRoot);
     }
 private:
     bool isSameTree(TreeNode* p, TreeNode* q) {
-        if (!p && !q) return true;
-        if (!p || !q) return false;
-        return (p->val == q->val && isSameTree(p->left, q->left) && isSameTree(p->right, q->right));
+        if (!p and !q) return true;
+        if (!p or ! q) return false;
+        return (p->val == q->val and isSameTree(p->left, q->left) and isSameTree(p->right, q->right));
     }
 };
