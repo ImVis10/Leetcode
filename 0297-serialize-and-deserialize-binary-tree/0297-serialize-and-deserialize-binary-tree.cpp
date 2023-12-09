@@ -38,6 +38,7 @@ public:
     // Decodes your encoded data to tree.
     TreeNode* deserialize(string data) {
         if (data.empty() || data == "#") return NULL;
+        
         stringstream ss(data);
         string node;
         
