@@ -14,20 +14,22 @@ public:
     int goodNodes(TreeNode* root) {
         return dfs(root, root->val);
     }
-    
 private:
-    int dfs(TreeNode* node, int currPathMax) {
-        if (!node) return 0;
+    int dfs(TreeNode* root, int currPathMax) {
+        if (!root) return 0;
         
-        int cnt = 0;
-        if (node->val >= currPathMax) {
-            currPathMax = node->val;
-            cnt = 1;
+//         int goodNodes = 0;
+        
+//         if (root->val >= currPathMax) {
+            
+//         }
+        if (root->val < currPathMax) {
+            return dfs(root->left, currPathMax) + dfs(root->right, currPathMax);
+        } else {
+            currPathMax = root->val;
+            return 1 + dfs(root->left, currPathMax) + dfs(root->right, currPathMax);
         }
+        return 0;
         
-        cnt += dfs(node->left, currPathMax);
-        cnt += dfs(node->right, currPathMax);
-        
-        return cnt;
     }
 };
