@@ -28,21 +28,19 @@ private:
         // Height is also calculated at each node of the tree because a tree rooted at a node is not quite height balanced when both the left and right subtrees are height balanced, it is only height balanced when the difference between the heights of left and right subtrees is no greater than 1
         
         // eg: Suppose a tree is rooted at a node 'p'. Height of left subtree is 4 and it is height-balanced. Height of right subtree is 7 and it is also height balanced. So eventhough both the subtrees of 'p' are height-balanced, it doesn't mean that subtree rooted at 'p' is balanced as the difference between the subtrees of p is > 1 (7 - 4 = 3 > 1)
-        if (root == NULL) {
-            return true;
-        }
+        if (!root) return true;
         
-        int heightOfLeftSubTree = 0, heightOfRightSubTree = 0;
+        int lh = 0, rh = 0;
         
-        if (!dfs(root->left, heightOfLeftSubTree) || !dfs(root->right, heightOfRightSubTree)) { // even if one node in the tree is not height balanced, return false
+        if (!dfs(root->left, lh) or !dfs(root->right, rh)) { // even if one node in the tree is not height balanced, return false
             return false;
         }
         
-        if (abs(heightOfLeftSubTree - heightOfRightSubTree) > 1) {
+        if (abs(lh - rh) > 1) {
             return false;
         }
         
-        height = 1 + max(heightOfLeftSubTree, heightOfRightSubTree);
+        height = 1 + max(lh, rh);
         return true;
     }
 };
