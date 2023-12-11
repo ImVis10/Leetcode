@@ -24,12 +24,10 @@ class Solution {
 public:
     Node* cloneGraph(Node* node) {
         if (!node) return NULL;
-        // return bfs(node);
-        /******DFS******/
-        if (graph.find(node) == graph.end()) {
+        if (graph.find(node) == graph.end()) { // if node not cloned yet
             graph[node] = new Node(node->val, vector<Node*>());
-            for (auto neigh : node->neighbors) {
-                graph[node]->neighbors.push_back(cloneGraph(neigh));
+            for (auto& neighbor : node->neighbors) {
+                graph[node]->neighbors.push_back(cloneGraph(neighbor)); // clone the neighbor
             }
         }
         return graph[node];
