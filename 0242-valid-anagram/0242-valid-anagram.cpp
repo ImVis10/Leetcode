@@ -2,6 +2,7 @@ class Solution {
 public:
     bool isAnagram(string s, string t) {
         int m = s.length(), n = t.length();
+        
         if (m != n) return false;
         
         unordered_map<char, int> mp;
@@ -11,8 +12,8 @@ public:
             mp[t[i]]--;
         }
         
-        for (auto& [ch, cnt] : mp) {
-            if (cnt != 0) return false;
+        for (auto& [k, v] : mp) {
+            if (v != 0) return false;
         }
         return true;
     }
