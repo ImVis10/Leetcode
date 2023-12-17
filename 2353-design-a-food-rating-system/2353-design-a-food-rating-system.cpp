@@ -1,12 +1,10 @@
 class FoodRatings {
     unordered_map<string, pair<string , int>> foodToCusineAndRatings;
-    // unordered_map<string, string> foodToCuisine;
     unordered_map<string, set<pair<int, string>>> highestRatedFood;
 public:
     FoodRatings(vector<string>& foods, vector<string>& cuisines, vector<int>& ratings) {
         for (int i = 0; i < foods.size(); i++) {
             foodToCusineAndRatings[foods[i]] = {cuisines[i], ratings[i]};
-            // foodToCuisine[foods[i]] = cuisines[i];
             highestRatedFood[cuisines[i]].insert({-ratings[i], foods[i]});
         }
     }
