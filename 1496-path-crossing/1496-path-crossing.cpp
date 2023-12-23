@@ -3,7 +3,7 @@ public:
     bool isPathCrossing(string path) {
         pair<int, int> curr = {0, 0};
         
-        set<pair<int, int>> set;
+        set<pair<int, int>> set; 
         set.insert(curr);
         
         for (char dir : path) {
