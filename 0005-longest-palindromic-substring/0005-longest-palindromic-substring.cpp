@@ -11,7 +11,7 @@ public:
         
         for (int i = n - 1; i >= 0; i--) {
             for (int j = i; j < n; j++) {
-                cache[i][j] = s[i] == s[j] && (j - i < 3 || cache[i + 1][j -1]);
+                cache[i][j] = s[i] == s[j] && (j - i < 3 || cache[i + 1][j - 1]);
                 
                 if (cache[i][j] && j - i + 1 > maxLen) {
                     start = i;
