@@ -4,12 +4,9 @@ public:
         priority_queue<int> pq;
         
         for (int num : nums) {
-            pq.push(num);
+            pq.push(-num);
+            if (pq.size() > k) pq.pop();
         }
-        
-        while (k-- > 1) {
-            pq.pop();
-        }
-        return pq.top();
+        return -pq.top();
     }
 };
