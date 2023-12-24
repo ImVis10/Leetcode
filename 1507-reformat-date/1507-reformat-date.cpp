@@ -15,17 +15,18 @@ private:
     vector<string> splitString(string date) {
         vector<string> res;
         string s = "";
-        for (int i = 0; i < date.length(); i++) {
-            if (date[i] == ' ') {
-                res.push_back(s);
-                s = "";
-            } else if (i == date.length() - 1) {
-                s += date[i];
-                res.push_back(s);
+        for (char ch : date) {
+            if (ch == ' ') {
+                if (!s.empty()) {
+                    res.push_back(s);
+                    s = "";
+                }
             } else {
-                s += date[i];
+                s += ch;
             }
         }
+        
+        if (!s.empty()) res.push_back(s); // for the last substring after space
         return res;
     }
     
