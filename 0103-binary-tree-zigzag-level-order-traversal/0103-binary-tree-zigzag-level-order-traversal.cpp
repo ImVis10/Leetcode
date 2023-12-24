@@ -12,37 +12,34 @@
 class Solution {
 public:
     vector<vector<int>> zigzagLevelOrder(TreeNode* root) {
-        vector<vector<int>> res;
-        
-        if (root == NULL) return res;
-        
-        // even levels (starting from 0) are printed normally
-        // odd levels must be reversed
-        
+        if (!root) return {};
+        vector<vector<int>> levelOrder = levelOrderTraversal(root);
+        int levels = levelOrder.size();
+        for (int i = 0; i < levels; i++) {
+            if (i % 2) reverse(levelOrder[i].begin(), levelOrder[i].end());
+        }
+        return levelOrder;
+    }
+private:
+    vector<vector<int>> levelOrderTraversal(TreeNode* root) {
         queue<TreeNode*> q;
         q.push(root);
         
+        vector<vector<int>> res;
+        
         while (!q.empty()) {
-            int n = q.size();
+            int levelSize = q.size();
             vector<int> level;
-            
-            for (int i = 0; i < n; i++) {
-                auto node = q.front();
+            for (int i = 0; i < levelSize; i++) {
+                auto currNode = q.front();
                 q.pop();
-                
-                level.push_back(node->val);
-                
-                if (node->left != NULL) {
-                    q.push(node->left);
+                level.push_back(currNode->val);
+                if (currNode->left) {
+                    q.push(currNode->left);
                 }
-            
-                if (node->right != NULL) {
-                    q.push(node->right);
+                if (currNode->right) {
+                    q.push(currNode->right);
                 }
-            }
-
-            if (res.size() % 2 != 0) { // indicating odd level based on the size of the res
-                reverse(level.begin(), level.end());
             }
             res.push_back(level);
         }
