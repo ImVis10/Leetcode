@@ -1,34 +1,26 @@
 class Solution {
 public:
     string decodeString(string s) {
-        stack<char> stack;
+        int idx = 0;
+        return recurse(s, idx);
+    }
+private:
+    string recurse(string& s, int& idx) {
         string res;
-        
-        for (char ch : s) {
-            if (ch != ']') stack.push(ch);
+        while (idx < s.length() and s[idx] != ']') {
+            if (!isdigit(s[idx])) res += s[idx++];
             else {
-                string alpha = "";
-                while (stack.top() != '[') {
-                    alpha = stack.top() + alpha;
-                    stack.pop();
+                int freq = 0;
+                while (idx < s.length() and isdigit(s[idx])) {
+                    freq = freq * 10 + (s[idx++] - '0');
                 }
-                stack.pop(); // to pop '['
-                int freq = 0, base = 1;
-                while (!stack.empty() and isdigit(stack.top())) {
-                    freq += (stack.top() - '0') * base;
-                    base *= 10;
-                    stack.pop();
-                }
-                cout << alpha << " " << freq << endl;
+                idx++; // ignore [
+                string decodedString = recurse(s, idx);
+                idx++; // ignore ]
                 while (freq--) {
-                    for (char ch : alpha) stack.push(ch);
+                    res += decodedString;
                 }
             }
-        }
-        cout << stack.size() << endl;
-        while (!stack.empty()) {
-            res = stack.top() + res;
-            stack.pop();
         }
         return res;
     }
