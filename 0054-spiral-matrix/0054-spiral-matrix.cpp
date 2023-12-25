@@ -1,32 +1,35 @@
 class Solution {
 public:
     vector<int> spiralOrder(vector<vector<int>>& matrix) {
-        int numRows = matrix.size();
-        int numCols = matrix[0].size();
+        int m = matrix.size(), n = matrix[0].size();
         
-        vector<vector<int>> dir = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}}; // right --> down --> left --> up
+        int right = n - 1, bottom = m - 1, left = 0, top = 0;
+        int idx = 0;
         
-        int currDir = 0, changeInDir = 0;
+        vector<int> spiral(m * n);
         
-        int currRow = 0, currCol = 0;
-        
-        vector<int> res;
-        res.push_back(matrix[currRow][currCol]);
-        
-        int visited = 101;
-        matrix[currRow][currCol] = visited;
-        
-        while (changeInDir < 2) {
-            while (currRow + dir[currDir][0] >= 0 && currRow + dir[currDir][0] < numRows && currCol + dir[currDir][1] >= 0 && currCol + dir[currDir][1] < numCols && matrix[currRow + dir[currDir][0]][currCol + dir[currDir][1]] != visited) {
-                changeInDir = 0;
-                currRow += dir[currDir][0];
-                currCol += dir[currDir][1];
-                res.push_back(matrix[currRow][currCol]);
-                matrix[currRow][currCol] = visited;
+        while (left <= right and top <= bottom) {
+            for (int col = left; col <= right; col++) {
+                spiral[idx++] = matrix[top][col];
             }
-            currDir = (currDir + 1) % dir.size();
-            changeInDir++;
+            top++;
+            for (int row = top; row <= bottom; row++) {
+                spiral[idx++] = matrix[row][right];
+            }
+            right--;
+            if (top <= bottom) {
+                for (int col = right; col >= left; col--) {
+                    spiral[idx++] = matrix[bottom][col];
+                }   
+            }
+            bottom--;
+            if (left <= right) {
+                for (int row = bottom; row >= top; row--) {
+                    spiral[idx++] = matrix[row][left];
+                }
+            }
+            left++;
         }
-        return res;
+        return spiral;
     }
 };
