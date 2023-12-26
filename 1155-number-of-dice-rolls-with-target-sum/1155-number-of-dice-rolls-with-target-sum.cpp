@@ -7,8 +7,8 @@ public:
     }
 private:
     int recurse(int n, int k, int target, vector<vector<int>>& cache) {
-        if (n < 0 or target < 0) return 0;
         if (n == 0 and target == 0) return 1;
+        if (target == 0 or n == 0) return 0;
         if (cache[n][target] != -1) return cache[n][target];
         int nWays = 0;
         for (int faceVal = 1; faceVal <= k; faceVal++) {
