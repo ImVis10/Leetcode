@@ -21,7 +21,7 @@ private:
     void dfs(TreeNode* root, int low, int high, int& res) {
         if (!root) return;
         if (root->val >= low and root->val <= high) res += root->val;
-        dfs(root->left, low, high, res);
-        dfs(root->right, low, high, res);
+        if (root->val > low) dfs(root->left, low, high, res);
+        if (root->val < high) dfs(root->right, low, high, res);
     }
 };
