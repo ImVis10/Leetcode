@@ -13,33 +13,34 @@ class Solution {
 public:
     int amountOfTime(TreeNode* root, int start) {
         unordered_map<TreeNode*, TreeNode*> parent;
-        pair<int, TreeNode*> p = getNumberOfLevels(root, parent, start);
-        int height = p.first;
+        auto p = getHeightAndStartNode(root, parent, start);
         
+        int height = p.first;
         TreeNode* startNode = p.second;
-        queue<TreeNode*> q;
-        q.push(startNode);
         
         unordered_map<TreeNode*, bool> visited;
         visited[startNode] = true;
+        
+        queue<TreeNode*> q;
+        q.push(startNode);
+        
         int time = -1;
         
         while (!q.empty()) {
-            int qSize = q.size();
             time++;
-            for (int i = 0; i < qSize; i++) {
+            int levelSize = q.size();
+            for (int i = 0; i < levelSize; i++) {
                 TreeNode* currNode = q.front();
-                // cout << currNode->val << endl;
                 q.pop();
-                if (parent[currNode] && !visited[parent[currNode]]) {
+                if (parent[currNode] and !visited[parent[currNode]]) {
                     q.push(parent[currNode]);
                     visited[parent[currNode]] = true;
                 }
-                if (currNode->left && !visited[currNode->left]) {
+                if (currNode->left and !visited[currNode->left]) {
                     q.push(currNode->left);
                     visited[currNode->left] = true;
                 }
-                if (currNode->right && !visited[currNode->right]) {
+                if (currNode->right and !visited[currNode->right]) {
                     q.push(currNode->right);
                     visited[currNode->right] = true;
                 }
@@ -47,26 +48,24 @@ public:
         }
         return time;
     }
-    
 private:
-    pair<int, TreeNode*> getNumberOfLevels(TreeNode* root, unordered_map<TreeNode*, TreeNode*>& parent, int start) {
-        if (root == NULL) {
-            return {0, NULL};
-        }
+    pair<int, TreeNode*> getHeightAndStartNode(TreeNode* root, unordered_map<TreeNode*, TreeNode*>& parent, int start) {
+        if (!root) return {0, NULL};
+        
         queue<TreeNode*> q;
         q.push(root);
-        int numLevels = 0;
         
-        TreeNode* startNode = NULL;
+        int height = 0;
+        
+        TreeNode* startNode;
+        
         while (!q.empty()) {
-            numLevels++;
-            int nodesInLevel = q.size();
-            while (nodesInLevel--) {
+            height++;
+            int levelSize = q.size();
+            for (int i = 0; i < levelSize; i++) {
                 TreeNode* currNode = q.front();
-                if (currNode->val == start) {
-                    startNode = currNode;
-                }
                 q.pop();
+                if (currNode->val == start) startNode = currNode;
                 if (currNode->left) {
                     q.push(currNode->left);
                     parent[currNode->left] = currNode;
@@ -74,9 +73,9 @@ private:
                 if (currNode->right) {
                     q.push(currNode->right);
                     parent[currNode->right] = currNode;
-                } 
+                }
             }
         }
-        return {numLevels, startNode};
+        return {height, startNode};
     }
 };
