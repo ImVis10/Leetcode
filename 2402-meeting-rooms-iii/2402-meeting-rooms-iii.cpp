@@ -2,7 +2,7 @@ class Solution {
 public:
     int mostBooked(int n, vector<vector<int>>& meetings) {
         sort(meetings.begin(), meetings.end());
-        priority_queue<pair<long long, int>, vector<pair<long long, int>>, greater<pair<long long, int>>> used;
+        priority_queue<pair<long long, int>, vector<pair<long long, int>>, greater<pair<long long, int>>> used; // pair<endtime, room>
         priority_queue<int, vector<int>, greater<int>> available;
         vector<int> count(n);
         // initally all the rooms are available
