@@ -12,7 +12,7 @@ public:
         // return res;
         
         // USING SLIDING WINDOW
-        return helper(nums, goal) - helper(nums, goal - 1);
+        return helper(nums, goal) - helper(nums, goal - 1); // atleast goal - (atleast goal - 1) == goal
         
     }
 private: 
