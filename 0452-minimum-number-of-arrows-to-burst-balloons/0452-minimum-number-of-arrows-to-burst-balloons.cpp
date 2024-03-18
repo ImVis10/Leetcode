@@ -1,26 +1,26 @@
 class Solution {
 public:
     int findMinArrowShots(vector<vector<int>>& points) {
-        // Can make use of greedy approach
-        // try to shoot an an arrow in such a manner that it bursts as many balloons as it can
-        // to achieve that balloons must be sorted in the increasing order of their ending positions
+        int n = points.size(), res = 1;
         
-        sort(points.begin(), points.end(), [](auto const &a, auto const &b) {
+        /**
+         When balloons are sorted by their end positions, shooting an arrow at the end position of the first balloon ensures that any other balloon whose start position is before or at this end position will be covered by this shot. This maximizes the number of balloons that can be burst with a single arrow.
+        **/
+        sort(points.begin(), points.end(), [](auto const& a, auto const& b) {
             return a[1] < b[1];
         });
         
-        int numArrows = 1;
         int currStart, currEnd, prevEnd = points[0][1];
-        
-        for (auto point : points) {
+
+        for (auto& point : points) {
             currStart = point[0];
             currEnd = point[1];
             
-            if (currStart > prevEnd) { // if the current balloon starts after the end of the previous one, an extra arrow is needed.
+            if (currStart > prevEnd) {
+                res++;
                 prevEnd = currEnd;
-                numArrows++;
             }
         }
-        return numArrows;
+        return res;
     }
 };
