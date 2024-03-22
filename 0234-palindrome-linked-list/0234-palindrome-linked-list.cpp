@@ -9,16 +9,14 @@
  * };
  */
 class Solution {
-    ListNode *tempHead;
 public:
     bool isPalindrome(ListNode* head) {
-        tempHead = head;
-        return recurse(head);
+        return recurse(head, head);
     }
 private:
-    bool recurse(ListNode* curr) {
+    bool recurse(ListNode* curr, ListNode* &tempHead) {
         if (curr) {
-            if (!recurse(curr->next)) return false;
+            if (!recurse(curr->next, tempHead)) return false;
             if (curr->val != tempHead->val) return false;
             tempHead = tempHead->next;
         }
