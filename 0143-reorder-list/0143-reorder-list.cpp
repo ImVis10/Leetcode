@@ -14,10 +14,8 @@ public:
         // reach until mid
         ListNode* mid = findMidPoint(head);
 
-        
         // reverse after mid
         ListNode* head2 = reverseList(mid);
-        
         
         while (head && head2) {
             ListNode* next1 = head->next;
