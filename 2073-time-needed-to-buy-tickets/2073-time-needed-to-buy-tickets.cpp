@@ -4,12 +4,10 @@ public:
         int n = tickets.size(), t = 0;
         
         for (int i = 0; i < n; i++) {
-            if (i <= k) {
-                if (tickets[i] >= tickets[k]) t += tickets[k];
-                else t += tickets[i];
+            if (tickets[i] >= tickets[k]) {
+                t += i <= k ? tickets[k] : tickets[k] - 1;
             } else {
-                if (tickets[i] >= tickets[k]) t += tickets[k] - 1;
-                else t += tickets[i];
+                t += tickets[i];
             }
         }
         return t;
