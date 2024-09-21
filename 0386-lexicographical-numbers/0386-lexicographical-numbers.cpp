@@ -1,21 +1,19 @@
 class Solution {
 public:
     vector<int> lexicalOrder(int n) {
-        // dfs
         vector<int> res;
-        for (int i = 1; i < 10; i++) {
-            if (i > n) break;
-            dfs(i, n, res);
+        int curr = 1;
+        while (res.size() < n) {
+            res.push_back(curr);
+            if (curr * 10 <= n) {
+                curr *= 10;
+            } else {
+                while (curr == n or curr % 10 == 9) {
+                    curr /= 10;
+                }
+                curr += 1;
+            }
         }
         return res;
-    }
-    
-    void dfs(int curr, int n, vector<int>& res) {
-        if (curr > n) return;
-        res.push_back(curr);
-        curr *= 10;
-        for (int i = 0; i < 10; i++) {
-            dfs(curr + i, n, res);
-        }
     }
 };
