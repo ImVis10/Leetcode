@@ -4,6 +4,7 @@ public:
         // dfs
         vector<int> res;
         for (int i = 1; i < 10; i++) {
+            if (i > n) break;
             dfs(i, n, res);
         }
         return res;
