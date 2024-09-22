@@ -5,12 +5,12 @@ public:
         int idx = 1;
         while (idx < k) {
             int steps = numNodes(curr, n);
-            if (idx + steps <= k) {
-                curr += 1;
-                idx += steps;
-            } else {
-                curr *= 10;
-                idx += 1;
+            if (idx + steps <= k) { // kth smallest is not in that subtree
+                curr += 1; // so move to right
+                idx += steps; // num of nodes bypassed while moving to right
+            } else { // kth smallest is in that subtreee
+                curr *= 10; // move down
+                idx += 1; // number of nodes covered while moving down
             }
         }
         return curr;
