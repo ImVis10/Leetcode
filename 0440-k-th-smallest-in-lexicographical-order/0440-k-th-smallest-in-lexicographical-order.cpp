@@ -4,7 +4,7 @@ public:
         long long curr = 1;
         int idx = 1;
         while (idx < k) {
-            int steps = numNodes(curr, n);
+            int steps = numNodes(curr, n); // number of nodes under curr
             if (idx + steps <= k) { // kth smallest is not in that subtree
                 curr += 1; // so move to right
                 idx += steps; // num of nodes bypassed while moving to right
