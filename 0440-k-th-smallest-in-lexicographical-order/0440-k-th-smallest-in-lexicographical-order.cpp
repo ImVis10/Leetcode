@@ -19,7 +19,7 @@ private:
     int numNodes(long long curr, int n) {
         long long nei = curr + 1, cnt = 0;
         while (curr <= n) {
-            cnt += min(nei, (long long) (n +  1)) - curr;
+            cnt += min(nei, (long long) (n +  1)) - curr; // number of nodes in a level
             curr *= 10;
             nei *= 10;
         }
