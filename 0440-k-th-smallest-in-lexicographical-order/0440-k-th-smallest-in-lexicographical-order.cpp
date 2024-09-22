@@ -1,6 +1,6 @@
 class Solution {
 public:
-    int findKthNumber(int n, int k) {
+    int findKthNumber(int n, int k) { // can use the same solution as #386, but it gives TLE. Smart way is to skip as much search space as possible.
         long long curr = 1;
         int idx = 1;
         while (idx < k) {
