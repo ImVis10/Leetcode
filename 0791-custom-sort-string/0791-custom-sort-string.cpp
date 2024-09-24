@@ -5,7 +5,7 @@ public:
         unordered_map<char, int> mp;
         for (char ch : s) mp[ch]++;
         for (char ch : order) {
-            if (mp.find(ch) != mp.end() and mp[ch] != 0) {
+            if (mp.count(ch) > 0) {
                 while (mp[ch] > 0) {
                     res += ch;
                     mp[ch] -= 1;
