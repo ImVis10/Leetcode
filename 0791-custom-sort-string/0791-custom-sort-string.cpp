@@ -1,21 +1,22 @@
 class Solution {
 public:
     string customSortString(string order, string s) {
-        string res = "";
+        string res;
         unordered_map<char, int> mp;
+        // get the counts of each char in s
         for (char ch : s) mp[ch]++;
+        // check for the chars in 's' that are present in 'order'
         for (char ch : order) {
-            if (mp.count(ch) > 0) {
-                while (mp[ch] > 0) {
+            if (mp.find(ch) != mp.end()) {
+                while (mp[ch]-- > 0) {
                     res += ch;
-                    mp[ch] -= 1;
-                }
+                } 
             }
         }
-        for (auto [ch, cnt] : mp) {
-            while (cnt > 0) {
+        // for chars in 's' that are not in 'order'
+        for (auto& [ch, cnt] : mp) {
+            while (cnt-- > 0) {
                 res += ch;
-                cnt -= 1;
             }
         }
         return res;
