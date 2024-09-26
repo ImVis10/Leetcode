@@ -4,8 +4,11 @@ public:
         int n = nums.size(), lastNonZeroAt = 0;
         for (int i = 0; i < n; i++) {
             if (nums[i] != 0) {
-                swap(nums[i], nums[lastNonZeroAt++]);
+                nums[lastNonZeroAt++] = nums[i];
             }
+        }
+        while (lastNonZeroAt < n) {
+            nums[lastNonZeroAt++] = 0;
         }
     }
 };
