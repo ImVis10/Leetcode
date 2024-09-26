@@ -1,14 +1,14 @@
 class Solution {
 public:
     void moveZeroes(vector<int>& nums) {
-        int n = nums.size(), lastNonZeroAt = 0;
+        int n = nums.size(), posAfterLastNonZero = 0;
         for (int i = 0; i < n; i++) {
             if (nums[i] != 0) {
-                nums[lastNonZeroAt++] = nums[i];
+                nums[posAfterLastNonZero++] = nums[i];
             }
         }
-        while (lastNonZeroAt < n) {
-            nums[lastNonZeroAt++] = 0;
+        while (posAfterLastNonZero < n) {
+            nums[posAfterLastNonZero++] = 0;
         }
     }
 };
