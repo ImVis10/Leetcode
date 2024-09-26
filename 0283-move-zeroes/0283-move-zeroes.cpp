@@ -4,11 +4,8 @@ public:
         int n = nums.size(), posAfterLastNonZero = 0;
         for (int i = 0; i < n; i++) {
             if (nums[i] != 0) {
-                nums[posAfterLastNonZero++] = nums[i];
+                swap(nums[posAfterLastNonZero++], nums[i]);
             }
-        }
-        while (posAfterLastNonZero < n) {
-            nums[posAfterLastNonZero++] = 0;
         }
     }
 };
