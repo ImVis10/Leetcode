@@ -7,7 +7,7 @@ public:
     
     bool book(int start, int end) {
         for (auto& [s, e] : bookings) {
-            if (max(start, s) < min(end, e)) { // checks for overlap between new event and existing event
+            if (!(start >= e or end <= s)) { // checks for overlap between new event and existing event
                 return false;
             }
         }
