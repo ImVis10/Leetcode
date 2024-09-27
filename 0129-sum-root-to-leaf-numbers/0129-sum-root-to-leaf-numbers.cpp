@@ -10,23 +10,18 @@
  * };
  */
 class Solution {
-    int res = 0;
 public:
     int sumNumbers(TreeNode* root) {
-        preOrder(root, 0);
+        int res = 0;
+        dfs(root, 0, res);
         return res;
     }
-
 private:
-    void preOrder(TreeNode* root, int currNum) {
-        if (root != NULL) {
-            currNum = root->val + currNum * 10;
-            
-            if (root->left == NULL && root->right == NULL) res += currNum;
-            
-            preOrder(root->left, currNum);
-            preOrder(root->right, currNum);
-        }
-        
+    void dfs(TreeNode* root, int curr, int& res) {
+        if (!root) return;
+        curr = root->val + (curr * 10);
+        if (!root->left and !root->right) res += curr;
+        dfs(root->left, curr, res);
+        dfs(root->right, curr, res);
     }
 };
