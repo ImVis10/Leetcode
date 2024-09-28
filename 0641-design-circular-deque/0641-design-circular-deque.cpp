@@ -35,7 +35,8 @@ public:
         } else {
             head->prev = newNode;
             newNode->next = head;
-            head = newNode; 
+            head = newNode;
+            head->prev = rear;
         }
         cnt++;
         return true;
@@ -52,7 +53,8 @@ public:
         } else {
             rear->next = newNode;
             newNode->prev = rear;
-            rear = newNode; 
+            rear = newNode;
+            rear->next = head;
         }
         cnt++;
         return true;
@@ -62,9 +64,9 @@ public:
         if (cnt == 0){
             return false;
         }
-        if (head->next) {
+        if (head->next and cnt > 1) {
             head = head->next;
-            head->prev = nullptr;
+            head->prev = rear;
         } else {
             head = nullptr;;
             rear = nullptr;
@@ -77,9 +79,9 @@ public:
          if (cnt == 0){
             return false;
         }
-        if (rear->prev) {
+        if (rear->prev and cnt > 1) {
             rear = rear->prev;
-            rear->next = nullptr;
+            rear->next = head;
         } else {
             rear = nullptr;
             head = nullptr;
