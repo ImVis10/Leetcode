@@ -8,9 +8,9 @@ public:
         
         unordered_map<int, int> mp; // val -> rank
         
-        for (int i = 0; i < temp.size(); i++) {
-            if (mp.find(temp[i]) == mp.end()) {
-                mp[temp[i]] = rank++;
+        for (int num : temp) {
+            if (mp.find(num) == mp.end()) {
+                mp[num] = rank++;
             }
         }
         vector<int> res;
