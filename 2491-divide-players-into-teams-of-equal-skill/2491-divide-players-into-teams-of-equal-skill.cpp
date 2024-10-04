@@ -1,6 +1,7 @@
 class Solution {
 public:
     long long dividePlayers(vector<int>& skill) {
+        // two sum logic
         int n = skill.size();
         int teams = n / 2, totalSkill = 0;
         vector<int> freq(1001);
