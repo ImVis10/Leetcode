@@ -1,20 +1,20 @@
 class Solution {
 public:
     bool checkInclusion(string s1, string s2) {
-        int l1 = s1.length(), l2 = s2.length();
+        int len1 = s1.length(), len2 = s2.length();
         
-        if (l1 > l2) return false;
+        if (len1 > len2) return false;
         
         vector<int> s1Freq(26), s2Freq(26);
         
         for (char ch : s1) s1Freq[ch - 'a']++;
         
-        for (int i = 0; i < l1; i++) s2Freq[s2[i] - 'a']++;
+        for (int i = 0; i < len1; i++) s2Freq[s2[i] - 'a']++;
         
         if (s1Freq == s2Freq) return true;
         
-        for (int i = l1; i < l2; i++) {
-            s2Freq[s2[i - l1] - 'a']--;
+        for (int i = len1; i < len2; i++) {
+            s2Freq[s2[i - len1] - 'a']--;
             s2Freq[s2[i] - 'a']++;
             if (s1Freq == s2Freq) return true;
         }
