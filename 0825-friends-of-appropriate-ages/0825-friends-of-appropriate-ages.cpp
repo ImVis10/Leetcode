@@ -3,7 +3,7 @@ public:
     int numFriendRequests(vector<int>& ages) {
         int res = 0;
         sort(ages.begin(), ages.end());
-        // to send a friend request
+        // to send a friend request (x to y)
         // 1. age[y] must be <= age[x] -- upper bound
         // 2. age[y] > 0.5 * age[x] + 7 -- lower bound
         // range must be between upper bound and lower bound
