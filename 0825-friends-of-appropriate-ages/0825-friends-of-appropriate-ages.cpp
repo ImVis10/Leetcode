@@ -2,19 +2,17 @@ class Solution {
 public:
     int numFriendRequests(vector<int>& ages) {
         int res = 0;
-        unordered_map<int, int> freq;
-        for (int& age : ages) freq[age]++;
-        for (auto& [x, cnt1] : freq) {
-            for (auto& [y, cnt2] : freq) {
-                if (request(x, y)) {
-                    res += cnt1 * (cnt2 - (x == y ? 1 : 0));
-                }
-            }
+        sort(ages.begin(), ages.end());
+        // to send a friend request
+        // 1. age[y] must be <= age[x] -- upper bound
+        // 2. age[y] > 0.5 * age[x] + 7 -- lower bound
+        // range must be between upper bound and lower bound
+        for (int& age : ages) {
+            auto idx1 = upper_bound(ages.begin(), ages.end(), age) - ages.begin();
+            auto idx2 = upper_bound(ages.begin(), ages.end(), (0.5 * age) + 7) - ages.begin();
+            if (idx1 > idx2) res += idx1 - idx2 - 1;
         }
         return res;
-    }
-private:
-    bool request(int x, int y) {
-        return !(y <= (0.5 * x) + 7 or y > x or (y > 100 and x  < 100));
+        
     }
 };
