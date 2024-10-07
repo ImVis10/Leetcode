@@ -1,16 +1,17 @@
 class Solution {
 public:
     int minLength(string s) {
-        stack<char> stk;
-        for (char& ch : s) {
-            if (!stk.empty()) {
-                if (ch == 'B' and stk.top() == 'A') stk.pop();
-                else if (ch == 'D' and stk.top() == 'C') stk.pop();
-                else stk.push(ch);
+        // editorial solution
+        int write = 0;
+        string temp = s;
+        for (int read = 0; read < s.length(); read++) {
+            temp[write] = temp[read];
+            if (write > 0 and (temp[write - 1] == 'A' or temp[write - 1] == 'C') and temp[write] == temp[write - 1] + 1) {
+                write--;
             } else {
-                stk.push(ch);
+                write++;
             }
         }
-        return stk.size();
+        return write;
     }
 };
