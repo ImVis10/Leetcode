@@ -10,7 +10,7 @@ public:
         for (int i = 0; i < nums.size(); i++) {
             if (nums[i] == target) {
                 cnt++;
-                if (rand() % cnt == cnt - 1) {
+                if (rand() % cnt == 0) {
                     res = i;
                 }
             }
