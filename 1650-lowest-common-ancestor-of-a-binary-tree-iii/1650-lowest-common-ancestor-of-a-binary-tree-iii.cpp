@@ -31,5 +31,16 @@ public:
             q = q->parent;
         }
         return NULL;
+
+        // without using extra space
+        // using two runners on the circular track concept
+        /**
+        Node* a = p, *b = q;
+        while (p1 != p2) {
+            a = a == nullptr ? q : a->parent;
+            b = p2 == nullptr ? p : b->parent;    
+        }
+        return a;
+        **/
     }
 };
