@@ -36,9 +36,9 @@ public:
         // using two runners on the circular track concept
         /**
         Node* a = p, *b = q;
-        while (p1 != p2) {
+        while (a != b) {
             a = a == nullptr ? q : a->parent;
-            b = p2 == nullptr ? p : b->parent;    
+            b = b == nullptr ? p : b->parent;    
         }
         return a;
         **/
