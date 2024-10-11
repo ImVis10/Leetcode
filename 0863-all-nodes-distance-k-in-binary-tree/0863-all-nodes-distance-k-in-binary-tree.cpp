@@ -10,62 +10,46 @@
 class Solution {
 public:
     vector<int> distanceK(TreeNode* root, TreeNode* target, int k) {
-        unordered_map<TreeNode*, TreeNode*> parent;
-        getParentMap(root, parent);
-        
-        unordered_map<TreeNode*, bool> visited;
-        queue<TreeNode*> q;
-        q.push(target);
-        visited[target] = true;
-        int currDistance = 0;
-        
-        // CONVERTED TREE TO AN UNDIRECTED GRAPH, SO NOW WE HAVE PARENT POINTERS AS WELL
-        while (!q.empty()) {
-            int qSize = q.size();
-            if (currDistance++ == k) break;
-            for (int i = 0; i < qSize; i++) {
-                TreeNode* currNode = q.front();
-                q.pop(); 
-                if (parent[currNode] && !visited[parent[currNode]]) { // for parent
-                    q.push(parent[currNode]);
-                    visited[parent[currNode]] = true;
-                }
-                if (currNode->left && !visited[currNode->left]) { // left child
-                    q.push(currNode->left);
-                    visited[currNode->left] = true;
-                }
-                if (currNode->right && !visited[currNode->right]) { // right child
-                    q.push(currNode->right);
-                    visited[currNode->right] = true;
-                }
-            }
-        }
-        
         vector<int> res;
-        while (!q.empty()) {
-            TreeNode* resNode = q.front();
-            q.pop();
-            res.push_back(resNode->val);
+        vector<TreeNode*> path = findPath(root, target);
+        collectNodesAtDistance(target, k, res);
+        k -= 1;
+        // to find nodes at distance k in the other subtree (of the parent or ancestors)
+        for (int i = path.size() - 2; i >= 0 and k >= 0; i--) { // i starts from path.size() - 2 coz path.size() - 1 has target, we should start from the parent of target
+            TreeNode* node = path[i];
+            if (k == 0) res.push_back(node->val);
+            else {
+                TreeNode* child = path[i + 1];
+                TreeNode* otherSubtree = node->left == child ? node->right : node->left;
+                collectNodesAtDistance(otherSubtree, k - 1, res);
+            }
+            k -= 1;
         }
         return res;
     }
-    
 private:
-    void getParentMap(TreeNode* root, unordered_map<TreeNode*, TreeNode*>& parentMap) {
-        queue<TreeNode*> q;
-        q.push(root);
-        
-        while (!q.empty()) {
-            TreeNode* currNode = q.front();
-            q.pop();
-            if (currNode->left) {
-                q.push(currNode->left);
-                parentMap[currNode->left] = currNode;
-            }
-            if (currNode->right) {
-                q.push(currNode->right);
-                parentMap[currNode->right] = currNode;
-            }
+    vector<TreeNode*> findPath(TreeNode* root, TreeNode* target) {
+        vector<TreeNode*> path;
+        getPath(root, target, path);
+        return path;
+    }
+
+    bool getPath(TreeNode* root, TreeNode* target, vector<TreeNode*>& path) {
+        if (!root) return false;
+        path.push_back(root);
+        if (root == target) return true;
+        if (getPath(root->left, target, path) or getPath(root->right, target, path)) return true;
+        path.pop_back();
+        return false;
+    }
+
+    void collectNodesAtDistance(TreeNode* node, int depth, vector<int>& res) {
+        if (!node) return;
+        if (depth == 0) {
+            res.push_back(node->val);
+            return;
         }
+        collectNodesAtDistance(node->left, depth - 1, res);
+        collectNodesAtDistance(node->right, depth - 1, res);
     }
 };
