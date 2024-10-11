@@ -10,15 +10,15 @@ public:
         set<int> chairs;
         for (auto& time : times) {
             int start = time[0], end = time[1];
-            while (!pq.empty() and pq.top().first <= start) {
+            while (!pq.empty() and pq.top().first <= start) { // release chairs based on arrival time of current friend
                 chairs.insert(pq.top().second);
                 pq.pop();
             }
             int currChair;
-            if (!chairs.empty()) {
+            if (!chairs.empty()) { // if chairs are free, get the first available chair
                 currChair = *chairs.begin();
                 chairs.erase(chairs.begin());
-            } else {
+            } else { // if no chair is free, get a new chair
                 currChair = chair++;
             }
             pq.push({end, currChair});
