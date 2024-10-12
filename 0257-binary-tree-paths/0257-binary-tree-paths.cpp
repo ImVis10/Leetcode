@@ -21,13 +21,12 @@ public:
 private:
     void dfs(TreeNode* root, string path, vector<string>& res) {
         if (!root) return;
-        path += to_string(root->val) + "->";
+        path += to_string(root->val);
         if (!root->left and !root->right) {
-            path.pop_back();
-            path.pop_back();
             res.push_back(path);
         }
         // path += to_string(root->val) + "->";
+        path += "->";
         dfs(root->left, path, res);
         dfs(root->right, path, res);
     }
