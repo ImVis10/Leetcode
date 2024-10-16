@@ -1,31 +1,31 @@
 class Solution {
 public:
     string longestDiverseString(int a, int b, int c) {
-        priority_queue<pair<int, int>> pq;
-        if (a > 0) pq.push({a, 'a'});
-        if (b > 0) pq.push({b, 'b'});
-        if (c > 0) pq.push({c, 'c'});
-        
+        int maxLen = a + b + c;
         string res;
         
-        while (!pq.empty()) {
-            auto p = pq.top(); pq.pop();
-            char ch = p.second;
-            int freq = p.first;
-            if (res.length() >= 2 and res[res.length() - 1] == ch and res[res.length() - 2] == ch) {
-                if (pq.empty()) break;
-                auto nextP = pq.top(); pq.pop();
-                char nextCh = nextP.second;
-                int nextFreq = nextP.first;
-                res += nextCh;
-                nextFreq -= 1;
-                if (nextFreq > 0) pq.push({nextFreq, nextCh});
-            } else {
-                freq -= 1;
-                res += ch;
+        int contA = 0, contB = 0, contC = 0;
+        
+        while (maxLen--) {
+            if ((a >= b and a >= c and contA < 2) or (contB == 2 and a > 0) or (contC == 2 and a > 0)) {
+                a--;
+                res += 'a';
+                contA++;
+                contB = 0;
+                contC = 0;
+            } else if ((b >= a and b >= c and contB < 2) or (contA == 2 and b > 0) or (contC == 2 and b > 0)) {
+                b--;
+                res += 'b';
+                contB++;
+                contA = 0;
+                contC = 0;
+            } else if ((c >= a and c >= b and contC < 2) or (contA == 2 and c > 0) or (contB == 2 and c > 0)) {
+                c--;
+                res += 'c';
+                contC++;
+                contA = 0;
+                contB = 0;
             }
-
-            if(freq > 0) pq.push({freq, ch});
         }
         return res;
     }
