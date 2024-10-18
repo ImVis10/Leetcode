@@ -10,9 +10,9 @@ private:
         if (idx == nums.size()) {
             return currOr == maxOr ? 1 : 0;
         }
-        
-        int withoutCurrNum = recur(nums, idx + 1, currOr, maxOr);
         int withCurrNum = recur(nums, idx + 1, currOr | nums[idx], maxOr);
-        return withoutCurrNum + withCurrNum;
+        int withoutCurrNum = recur(nums, idx + 1, currOr, maxOr);
+        
+        return withCurrNum + withoutCurrNum;
     }
 };
