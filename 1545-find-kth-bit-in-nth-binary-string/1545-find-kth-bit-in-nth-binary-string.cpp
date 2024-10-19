@@ -1,15 +1,16 @@
 class Solution {
 public:
     char findKthBit(int n, int k) {
-        if (n == 1) return '0';
-        
-        int len = 1 << n;
-        
-        if (k < len / 2) return findKthBit(n - 1, k);
-        else if (k == len / 2) return '1';
-        else {
-            char ch = findKthBit(n - 1, len - k);
-            return (ch == '1') ? '0' : '1';
+        if (k == 1) return '0';
+        int len = (1 << n) - 1, inSecondHalf = 0;
+        while (k > 1) {
+            if (k == len / 2 + 1) return inSecondHalf == 0 ? '1' : '0';
+            if (k > len / 2) {
+                k = len + 1 - k;
+                inSecondHalf = !inSecondHalf;
+            }
+            len /= 2;
         }
+        return inSecondHalf == 0 ? '0' : '1';
     }
 };
