@@ -14,7 +14,8 @@ public:
     long long kthLargestLevelSum(TreeNode* root, int k) {
         queue<TreeNode*> q;
         q.push(root);
-        vector<long long int> arr;
+        
+        priority_queue<long, vector<long>, greater<long>> pq;
         
         while (!q.empty()) {
             int levelSize = q.size();
@@ -25,13 +26,12 @@ public:
                 if (curr->left) q.push(curr->left);
                 if (curr->right) q.push(curr->right);
             }
-            arr.push_back(sum);
+            pq.push(sum);
+            if (pq.size() > k) pq.pop();
         }
         
-        if (arr.size() < k) return -1;
+        if (pq.size() < k) return -1;
         
-        sort(arr.rbegin(), arr.rend());
-        
-        return arr[k - 1];
+        return pq.top();
      }
 };
