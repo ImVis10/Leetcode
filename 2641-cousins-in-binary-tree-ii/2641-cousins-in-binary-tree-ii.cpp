@@ -15,39 +15,30 @@ public:
         queue<TreeNode*> q;
         q.push(root);
         
-        vector<int> levelSum;
+        int totalSumOfCurrLevel = root->val;
         
         while (!q.empty()) {
             int levelSize = q.size();
-            int sum = 0;
+            int currSumOfNextLevel = 0;
             while (levelSize--) {
                 auto curr = q.front(); q.pop();
-                sum += curr->val;
-                if (curr->left) q.push(curr->left);
-                if (curr->right) q.push(curr->right);
-            }
-            levelSum.push_back(sum);
-        }
-        
-        q.push(root);
-        root->val = 0;
-        
-        int level = 1;
-        while (!q.empty()) {
-            int levelSize = q.size();
-            while (levelSize--) {
-                auto curr = q.front(); q.pop();
-                int siblingSum = (curr->left ? curr->left->val : 0) + (curr->right ? curr->right->val  : 0);
+                curr->val = totalSumOfCurrLevel - curr->val;
+                
+                int siblingSum = (curr->left ? curr->left->val : 0) + (curr->right ? curr->right->val : 0);
+                
                 if (curr->left) {
-                    curr->left->val = levelSum[level] - siblingSum;
+                    currSumOfNextLevel += curr->left->val;
+                    curr->left->val = siblingSum;
                     q.push(curr->left);
                 }
+                
                 if (curr->right) {
-                    curr->right->val = levelSum[level] - siblingSum;
+                    currSumOfNextLevel += curr->right->val;
+                    curr->right->val = siblingSum;
                     q.push(curr->right);
                 }
             }
-            level++;
+            totalSumOfCurrLevel = currSumOfNextLevel;
         }
         return root;
     }
