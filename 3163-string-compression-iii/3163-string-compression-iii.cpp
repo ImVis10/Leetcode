@@ -9,7 +9,8 @@ public:
         string comp;
         int n = word.length();
         for (int i = 0, j = 0; j < n; j++) {
-            if ((word[j] == word[j + 1] and j - i + 1 == 9) or word[j] != word[j + 1]) {
+            if (j == n - 1 or word[j] != word[j + 1] or j - i + 1 == 9) {
+                cout << word[j + 1] << endl;
                 comp += to_string(j - i + 1);
                 comp += word[j];
                 i = j + 1;
