@@ -13,8 +13,6 @@ public:
                 comp += to_string(j - i + 1);
                 comp += word[j];
                 i = j + 1;
-            } else {
-                continue;
             }
         }
         return comp;
