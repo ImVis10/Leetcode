@@ -3,10 +3,14 @@ public:
     bool validPalindrome(string s) {
         int n = s.length();
         if (n <= 2) return true;
-        for (int i = 0; i < n / 2; i++) {
-            if (s[i] != s[n - i - 1]) {
-                return isPalin(s, i, n - i - 2) or isPalin(s, i + 1, n - i - 1);
-            }
+        int i = 0, j = n - 1;
+
+        while (i < j) {
+          if (s[i] != s[j]) {
+            return isPalin(s, i, j - 1) or isPalin(s, i + 1, j);
+          }
+          i++;
+          j--;
         }
         return true;
     }
