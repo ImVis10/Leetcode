@@ -1,24 +1,18 @@
 class KthLargest {
 public:
     KthLargest(int k, vector<int>& nums) {
-        this-> k = k;
-        for (int num : nums) {
-            minHeap.push(num);
-        }
+        this->k = k;
+        for (auto& num : nums) pq.push(num);
     }
     
     int add(int val) {
-        minHeap.push(val);
-        
-        while (minHeap.size() > k) {
-            minHeap.pop();
-        }
-        return minHeap.top();
+        pq.push(val);
+        while (pq.size() > k) pq.pop();
+        return pq.top();
     }
-
 private:
-    priority_queue <int, vector<int>, greater<int>> minHeap;
-    int k; //  global variable so that it can be used by add
+    int k;
+    priority_queue<int, vector<int>, greater<int>> pq;
 };
 
 /**
